@@ -3,7 +3,6 @@
 .env
 .env.*
 !.env.example
-!.env.enterprise.example
 reports
 .pytest_cache
 .ruff_cache
@@ -17,6 +16,4 @@ build
 dist
 results
 eval_results
-Dockerfile
-docker-compose.yml
 .local-web
