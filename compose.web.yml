@@ -1,0 +1,47 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    init: true
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TRADINGAGENTS_WEB_USER: ${TRADINGAGENTS_WEB_USER:-admin}
+      TRADINGAGENTS_WEB_PASSWORD: ${TRADINGAGENTS_WEB_PASSWORD:?Set a random password of at least 16 characters in .env}
+      TRADINGAGENTS_WEB_HOST: 0.0.0.0
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - research_data:/home/appuser/.tradingagents
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+  proxy:
+    image: caddy:2-alpine
+    profiles: [https]
+    restart: unless-stopped
+    environment:
+      TRADINGAGENTS_DOMAIN: ${TRADINGAGENTS_DOMAIN:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      web:
+        condition: service_healthy
+volumes:
+  research_data:
+  caddy_data:
+  caddy_config:

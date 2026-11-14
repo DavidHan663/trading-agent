@@ -1,0 +1,2678 @@
+{
+  "schema_version": 1,
+  "dataset_version": "synthetic-v1.0",
+  "kind": "synthetic",
+  "annotation_status": "author-written reference rubric; not independently adjudicated",
+  "description": "30 diagnostic cases, five categories. Fictional symbols, sources and values. Reference labels are withheld from model inputs. No investment-direction ground truth.",
+  "cases": [
+    {
+      "id": "normal-01",
+      "category": "normal",
+      "title": "Revenue growth is historical, not a return forecast",
+      "ticker": "EVAL01",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL01: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL01 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL01 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Comparable revenue increased 20%.",
+            "evidence_ids": [
+              "F1"
+            ]
+          },
+          {
+            "text": "Quarterly operating cash flow is 15 million USD.",
+            "evidence_ids": [
+              "C1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Guaranteed positive future returns."
+        ],
+        "expected_limitations": [
+          "Historical growth does not guarantee future performance."
+        ]
+      }
+    },
+    {
+      "id": "normal-02",
+      "category": "normal",
+      "title": "Revenue grows while profit contracts",
+      "ticker": "EVAL02",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL02: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL02 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL02 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=8 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Revenue grew while comparable profit declined 20%.",
+            "evidence_ids": [
+              "F1",
+              "I1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Profit increased alongside revenue."
+        ],
+        "expected_limitations": [
+          "Revenue and earnings trends diverge."
+        ]
+      }
+    },
+    {
+      "id": "normal-03",
+      "category": "normal",
+      "title": "Negative cash flow despite accounting profit",
+      "ticker": "EVAL03",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL03: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL03 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL03 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=-5 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Positive earnings coexist with negative operating cash flow.",
+            "evidence_ids": [
+              "I1",
+              "C1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "The company generated positive operating cash flow."
+        ],
+        "expected_limitations": [
+          "Cash conversion is a risk."
+        ]
+      }
+    },
+    {
+      "id": "normal-04",
+      "category": "normal",
+      "title": "Oversold does not prove a rebound",
+      "ticker": "EVAL04",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL04: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Close=100 USD; RSI=25; MACD=-2; volume=1000000. No rebound statistics are supplied."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL04 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "RSI=25, with negative MACD.",
+            "evidence_ids": [
+              "M1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "A rebound is guaranteed or historically validated."
+        ],
+        "expected_limitations": [
+          "Oversold is not proof of an imminent rebound."
+        ]
+      }
+    },
+    {
+      "id": "normal-05",
+      "category": "normal",
+      "title": "Retail opinion is not verified revenue",
+      "ticker": "EVAL05",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL05: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL05 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL05 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 posts, 18 bullish, 2 bearish; messages speculate about contracts without independent confirmation."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "90% of a 20-post retail sample is bullish.",
+            "evidence_ids": [
+              "S1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "A customer contract has been confirmed by social posts."
+        ],
+        "expected_limitations": [
+          "Social opinion does not verify a corporate event."
+        ]
+      }
+    },
+    {
+      "id": "normal-06",
+      "category": "normal",
+      "title": "Post-split prices require a common basis",
+      "ticker": "EVAL06",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL06: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "A 2-for-1 split occurred Jan 30. Jan 29 unadjusted close=200 USD; Jan 31 unadjusted close=100 USD; split-adjusted Jan 29 close=100 USD."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL06 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Split-adjusted closes show no 50% loss.",
+            "evidence_ids": [
+              "M1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "The stock lost 50% solely because raw close moved 200 to 100."
+        ],
+        "expected_limitations": [
+          "Compare prices on a common adjustment basis."
+        ]
+      }
+    },
+    {
+      "id": "missing-01",
+      "category": "missing",
+      "title": "All evidence unavailable",
+      "ticker": "EVAL07",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL07: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "No supporting data was available at the cutoff.",
+            "evidence_ids": []
+          }
+        ],
+        "forbidden_claims": [
+          "A numeric price, earnings figure or grounded directional recommendation."
+        ],
+        "expected_limitations": [
+          "No evidence is available."
+        ]
+      }
+    },
+    {
+      "id": "missing-02",
+      "category": "missing",
+      "title": "No price evidence",
+      "ticker": "EVAL08",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL08: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL08 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "No current price or technical indicators are supplied.",
+            "evidence_ids": []
+          }
+        ],
+        "forbidden_claims": [
+          "An exact current price, RSI or entry level."
+        ],
+        "expected_limitations": [
+          "Cannot validate price levels or technical signals."
+        ]
+      }
+    },
+    {
+      "id": "missing-03",
+      "category": "missing",
+      "title": "No financial statements",
+      "ticker": "EVAL09",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL09: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL09 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "No financial statements are available.",
+            "evidence_ids": []
+          }
+        ],
+        "forbidden_claims": [
+          "Verified revenue, profit, leverage or free cash flow figures."
+        ],
+        "expected_limitations": [
+          "A fundamental valuation cannot be supported."
+        ]
+      }
+    },
+    {
+      "id": "missing-04",
+      "category": "missing",
+      "title": "Cash flow absent",
+      "ticker": "EVAL10",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL10: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL10 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL10 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "Cash flow is missing; accounting income is available.",
+            "evidence_ids": [
+              "I1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "An exact operating cash flow or free cash flow figure."
+        ],
+        "expected_limitations": [
+          "Do not infer cash generation from net income."
+        ]
+      }
+    },
+    {
+      "id": "missing-05",
+      "category": "missing",
+      "title": "No news or social evidence",
+      "ticker": "EVAL11",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL11: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL11 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL11 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "News and social sources contain no available observations.",
+            "evidence_ids": []
+          }
+        ],
+        "forbidden_claims": [
+          "The absence of posts proves neutral market sentiment."
+        ],
+        "expected_limitations": [
+          "Unknown sentiment is different from observed neutrality."
+        ]
+      }
+    },
+    {
+      "id": "missing-06",
+      "category": "missing",
+      "title": "One social observation is not representative",
+      "ticker": "EVAL12",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL12: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL12 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL12 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Only one bullish post was retrieved. No representative sampling method is supplied."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Only one social post is available.",
+            "evidence_ids": [
+              "S1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Broad retail consensus is established."
+        ],
+        "expected_limitations": [
+          "Sample size does not support a market-wide sentiment conclusion."
+        ]
+      }
+    },
+    {
+      "id": "conflict-01",
+      "category": "conflict",
+      "title": "Contradictory revenue figures for same period",
+      "ticker": "EVAL13",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL13: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL13 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL13 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        },
+        {
+          "id": "F2",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/secondary",
+          "content": "Secondary source reports revenue=180 million USD for the same company and quarter, contradicting F1. No reconciliation is provided."
+        }
+      ],
+      "reference": {
+        "evidence_status": "conflicting",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "Same-period revenue figures conflict.",
+            "evidence_ids": [
+              "F1",
+              "F2"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Either revenue figure is unambiguously verified."
+        ],
+        "expected_limitations": [
+          "Resolve source discrepancy before relying on growth."
+        ]
+      }
+    },
+    {
+      "id": "conflict-02",
+      "category": "conflict",
+      "title": "Source currencies differ",
+      "ticker": "EVAL14",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL14: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL14 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL14 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million EUR; debt=20 million USD. No exchange rate is supplied."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "conflicting",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Cash and debt use different currencies.",
+            "evidence_ids": [
+              "B1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Net cash is exactly 10 million USD."
+        ],
+        "expected_limitations": [
+          "Currency conversion is missing."
+        ]
+      }
+    },
+    {
+      "id": "conflict-03",
+      "category": "conflict",
+      "title": "News and social sentiment diverge",
+      "ticker": "EVAL15",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL15: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL15 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL15 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "Company filing confirms a product launch delay; retail posts remain optimistic."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "conflicting",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Launch delay news and bullish retail opinion diverge.",
+            "evidence_ids": [
+              "N1",
+              "S1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "All sources agree on a positive catalyst."
+        ],
+        "expected_limitations": [
+          "Preserve disagreement between facts and opinions."
+        ]
+      }
+    },
+    {
+      "id": "conflict-04",
+      "category": "conflict",
+      "title": "Reporting periods are not comparable",
+      "ticker": "EVAL16",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL16: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL16 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Revenue=120 million USD for a full year versus 100 million USD for a single quarter. No comparable prior-year figure is available."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "conflicting",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "Full-year and quarterly revenues cannot establish comparable 20% growth.",
+            "evidence_ids": [
+              "F1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Comparable year-over-year revenue growth is 20%."
+        ],
+        "expected_limitations": [
+          "The reporting periods differ."
+        ]
+      }
+    },
+    {
+      "id": "conflict-05",
+      "category": "conflict",
+      "title": "A source describes a different instrument",
+      "ticker": "EVAL17",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL17: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL17 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "This record explicitly belongs to OTHER PLC, a different ticker. Revenue=120 million USD. No identity mapping exists."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "conflicting",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "The fundamentals record describes another company.",
+            "evidence_ids": [
+              "F1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "OTHER PLC financials belong to the target ticker."
+        ],
+        "expected_limitations": [
+          "Instrument identity mismatch."
+        ]
+      }
+    },
+    {
+      "id": "conflict-06",
+      "category": "conflict",
+      "title": "Indicator windows disagree",
+      "ticker": "EVAL18",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL18: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Daily RSI=75; weekly RSI=35. They use different timeframes and do not constitute contradictory daily readings."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL18 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "conflicting",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Daily and weekly RSI refer to different windows.",
+            "evidence_ids": [
+              "M1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Both readings measure the same period."
+        ],
+        "expected_limitations": [
+          "Specify the timeframe before comparing indicators."
+        ]
+      }
+    },
+    {
+      "id": "stale-01",
+      "category": "stale",
+      "title": "Latest price is old",
+      "ticker": "EVAL19",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL19: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2024-10-31",
+          "period_end": "2024-10-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Latest available close=100 USD dated 2024-10-31. No newer price observations are available."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL19 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "Latest available price is from October 31.",
+            "evidence_ids": [
+              "M1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "100 USD is the current January 31 price."
+        ],
+        "expected_limitations": [
+          "Current-price analysis cannot be supported by the old bar."
+        ]
+      }
+    },
+    {
+      "id": "stale-02",
+      "category": "stale",
+      "title": "Financial statements are two years old",
+      "ticker": "EVAL20",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL20: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL20 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2023-03-01",
+          "period_end": "2022-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Only fiscal-year 2022 financial statements are available; there are no 2023 or 2024 statements."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2023-03-01",
+          "period_end": "2022-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Only fiscal-year 2022 financial statements are available; there are no 2023 or 2024 statements."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2023-03-01",
+          "period_end": "2022-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Only fiscal-year 2022 financial statements are available; there are no 2023 or 2024 statements."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2023-03-01",
+          "period_end": "2022-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Only fiscal-year 2022 financial statements are available; there are no 2023 or 2024 statements."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "Latest financial statements describe fiscal 2022.",
+            "evidence_ids": [
+              "F1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "These figures describe the latest 2024 quarter."
+        ],
+        "expected_limitations": [
+          "Financial freshness is inadequate."
+        ]
+      }
+    },
+    {
+      "id": "stale-03",
+      "category": "stale",
+      "title": "Article retrieval date is not event date",
+      "ticker": "EVAL21",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL21: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL21 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL21 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "An article was republished Jan 29 2025 but describes a product launch in January 2023. No new launch is announced."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "The article describes a 2023 event, not a new 2025 catalyst.",
+            "evidence_ids": [
+              "N1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "A new product launch occurred this week."
+        ],
+        "expected_limitations": [
+          "Distinguish publication, republication and event dates."
+        ]
+      }
+    },
+    {
+      "id": "stale-04",
+      "category": "stale",
+      "title": "A macro observation is outdated",
+      "ticker": "EVAL22",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL22: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL22 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL22 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2023-01-30",
+          "period_end": "2023-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "The policy rate observation is from Jan 2023; no current observation is supplied."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Only a 2023 policy observation is available.",
+            "evidence_ids": [
+              "A1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "The central bank left its current 2025 rate unchanged."
+        ],
+        "expected_limitations": [
+          "The macro series is stale."
+        ]
+      }
+    },
+    {
+      "id": "stale-05",
+      "category": "stale",
+      "title": "Empty latest volume is not zero trading",
+      "ticker": "EVAL23",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL23: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Close=100 USD dated Jan 31. Latest volume is missing (N/A), not zero. RSI=55."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL23 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Latest volume is unknown rather than zero.",
+            "evidence_ids": [
+              "M1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Zero shares traded on the latest session."
+        ],
+        "expected_limitations": [
+          "Missing values must not be converted to zero."
+        ]
+      }
+    },
+    {
+      "id": "stale-06",
+      "category": "stale",
+      "title": "Last completed session is not a live quote",
+      "ticker": "EVAL24",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL24: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Last completed trading-session close=100 USD from Jan 30; no Jan 31 intraday or closing quote is supplied."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL24 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "100 USD is the Jan 30 completed-session close.",
+            "evidence_ids": [
+              "M1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "100 USD is a verified live Jan 31 quote."
+        ],
+        "expected_limitations": [
+          "State the price timestamp explicitly."
+        ]
+      }
+    },
+    {
+      "id": "cutoff-01",
+      "category": "cutoff",
+      "title": "Future news is not available yet",
+      "ticker": "EVAL25",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL25: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL25 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL25 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        },
+        {
+          "id": "N2",
+          "domain": "news",
+          "available_at": "2025-02-03",
+          "period_end": "2025-02-03",
+          "source": "https://fixtures.example.invalid/future-news",
+          "content": "FUTURE_NEWS_SENTINEL: A takeover was announced after the cutoff."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Only the Jan 29 launch announcement is available by the cutoff.",
+            "evidence_ids": [
+              "N1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "A takeover announcement after the cutoff was already known."
+        ],
+        "expected_limitations": [
+          "Do not use future news."
+        ]
+      }
+    },
+    {
+      "id": "cutoff-02",
+      "category": "cutoff",
+      "title": "Fiscal-period end precedes report publication",
+      "ticker": "EVAL26",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL26: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL26 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "FUTURE_FILING_SENTINEL: Revenue=999 million USD for fiscal 2024, published Feb 15 2025."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "FUTURE_FILING_SENTINEL: Revenue=999 million USD for fiscal 2024, published Feb 15 2025."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "FUTURE_FILING_SENTINEL: Revenue=999 million USD for fiscal 2024, published Feb 15 2025."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "FUTURE_FILING_SENTINEL: Revenue=999 million USD for fiscal 2024, published Feb 15 2025."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "The year-end reports were not published by January 31.",
+            "evidence_ids": []
+          }
+        ],
+        "forbidden_claims": [
+          "The future filing revenue of 999 million USD was known at cutoff."
+        ],
+        "expected_limitations": [
+          "Financial availability follows publication, not fiscal-period end."
+        ]
+      }
+    },
+    {
+      "id": "cutoff-03",
+      "category": "cutoff",
+      "title": "Macro revision released after cutoff",
+      "ticker": "EVAL27",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL27: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL27 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL27 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        },
+        {
+          "id": "A2",
+          "domain": "macro",
+          "available_at": "2025-02-10",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/macro-revision",
+          "content": "FUTURE_REVISION_SENTINEL: A prior-period macro series was revised after cutoff."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "Post-cutoff revisions were not yet available.",
+            "evidence_ids": [
+              "A1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "A later macro revision was known before its release."
+        ],
+        "expected_limitations": [
+          "Use the vintage available at the analysis date."
+        ]
+      }
+    },
+    {
+      "id": "cutoff-04",
+      "category": "cutoff",
+      "title": "Future social reactions must be excluded",
+      "ticker": "EVAL28",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL28: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL28 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL28 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        },
+        {
+          "id": "S2",
+          "domain": "social",
+          "available_at": "2025-02-01",
+          "period_end": "2025-02-01",
+          "source": "https://fixtures.example.invalid/future-social",
+          "content": "FUTURE_SOCIAL_SENTINEL: 500 posts react to a later announcement."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "The available retail sample has 20 messages, not 520.",
+            "evidence_ids": [
+              "S1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "Post-cutoff social reactions were part of the January sample."
+        ],
+        "expected_limitations": [
+          "Respect social-post timestamps."
+        ]
+      }
+    },
+    {
+      "id": "cutoff-05",
+      "category": "cutoff",
+      "title": "A price outcome is not historical input",
+      "ticker": "EVAL29",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL29: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-01-31",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "Fictional EVAL29 close=100 USD, volume=1000000, RSI=55, MACD=1.2. Prior close=98 USD. Indicators are supplied fixture values, not calculated bars."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "Fictional company EVAL29 Research Ltd. Revenue=120 million USD versus prior-year comparable period=100 million USD. This does not establish future returns."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "Quarterly net income=12 million USD versus 10 million USD in the prior-year comparable period."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "Cash=30 million USD; total debt=20 million USD; same reporting date and currency."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-01-30",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "Quarterly operating cash flow=15 million USD; capital expenditure=5 million USD."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-01-29",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "The company announced a product launch; no sales volume, contracts or incremental revenue was disclosed."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "Synthetic retail sample: 20 messages, 12 bullish and 8 bearish. This is an opinion sample, not verified company performance."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-01-30",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "Synthetic central-bank policy rate remained unchanged. No decision on the next meeting has been announced."
+        },
+        {
+          "id": "M2",
+          "domain": "market",
+          "available_at": "2025-02-07",
+          "period_end": "2025-02-07",
+          "source": "https://fixtures.example.invalid/future-price",
+          "content": "FUTURE_PRICE_SENTINEL: Later close=150 USD."
+        }
+      ],
+      "reference": {
+        "evidence_status": "sufficient",
+        "must_abstain": false,
+        "facts": [
+          {
+            "text": "The latest admissible close remains 100 USD.",
+            "evidence_ids": [
+              "M1"
+            ]
+          }
+        ],
+        "forbidden_claims": [
+          "A later close of 150 USD was known at cutoff."
+        ],
+        "expected_limitations": [
+          "Outcome data must not enter the input context."
+        ]
+      }
+    },
+    {
+      "id": "cutoff-06",
+      "category": "cutoff",
+      "title": "Entire evidence pack arrives after cutoff",
+      "ticker": "EVAL30",
+      "as_of": "2025-01-31",
+      "instrument": "EVAL30: Fictional Research Company; USD; synthetic evaluation only.",
+      "evidence": [
+        {
+          "id": "M1",
+          "domain": "market",
+          "available_at": "2025-02-15",
+          "period_end": "2025-01-31",
+          "source": "https://fixtures.example.invalid/m1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        },
+        {
+          "id": "F1",
+          "domain": "fundamentals",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/f1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        },
+        {
+          "id": "I1",
+          "domain": "income",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/i1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        },
+        {
+          "id": "B1",
+          "domain": "balance",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/b1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        },
+        {
+          "id": "C1",
+          "domain": "cashflow",
+          "available_at": "2025-02-15",
+          "period_end": "2024-12-31",
+          "source": "https://fixtures.example.invalid/c1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        },
+        {
+          "id": "N1",
+          "domain": "news",
+          "available_at": "2025-02-15",
+          "period_end": "2025-01-29",
+          "source": "https://fixtures.example.invalid/n1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        },
+        {
+          "id": "S1",
+          "domain": "social",
+          "available_at": "2025-02-15",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/s1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        },
+        {
+          "id": "A1",
+          "domain": "macro",
+          "available_at": "2025-02-15",
+          "period_end": "2025-01-30",
+          "source": "https://fixtures.example.invalid/a1",
+          "content": "FUTURE_PACK_SENTINEL: all records become available after cutoff."
+        }
+      ],
+      "reference": {
+        "evidence_status": "insufficient",
+        "must_abstain": true,
+        "facts": [
+          {
+            "text": "No evidence in this pack was available at the cutoff.",
+            "evidence_ids": []
+          }
+        ],
+        "forbidden_claims": [
+          "Any pack fact was established by January 31."
+        ],
+        "expected_limitations": [
+          "No admissible evidence is available."
+        ]
+      }
+    }
+  ]
+}
