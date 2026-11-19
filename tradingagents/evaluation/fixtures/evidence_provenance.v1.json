@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "dataset_version": "evidence-provenance-v1.0",
+  "kind": "synthetic_provenance_contract",
+  "description": "Offline records for provenance and point-in-time validation. All symbols, links, and values are synthetic.",
+  "records": [
+    {
+      "id": "MARKET-VERIFIED",
+      "tool": "get_stock_data",
+      "target_ticker": "EVAL01",
+      "requested_ticker": "EVAL01",
+      "source_ticker": "EVAL01",
+      "source_url": "https://fixtures.example.invalid/market/EVAL01/2025-01-31",
+      "source_provider": "fixture",
+      "source_kind": "primary",
+      "available_at": "2025-01-31",
+      "period_end": "2025-01-31",
+      "fetched_at": "2025-01-31T20:00:00+00:00",
+      "content": "Close=100 USD."
+    },
+    {
+      "id": "FINANCIAL-VERIFIED",
+      "tool": "get_income_statement",
+      "target_ticker": "EVAL01",
+      "requested_ticker": "EVAL01",
+      "source_ticker": "EVAL01",
+      "source_url": "https://fixtures.example.invalid/filings/EVAL01/2024-q4",
+      "source_provider": "fixture",
+      "source_kind": "primary",
+      "available_at": "2025-01-30",
+      "period_end": "2024-12-31",
+      "fetched_at": "2025-01-31T20:00:00+00:00",
+      "content": "Revenue=120 million USD."
+    },
+    {
+      "id": "FINANCIAL-PERIOD-ONLY",
+      "tool": "get_income_statement",
+      "target_ticker": "EVAL01",
+      "requested_ticker": "EVAL01",
+      "source_ticker": "EVAL01",
+      "source_url": "https://fixtures.example.invalid/provider/EVAL01/financials",
+      "source_provider": "fixture",
+      "source_kind": "provider_reference",
+      "available_at": null,
+      "period_end": "2024-12-31",
+      "fetched_at": "2025-01-31T20:00:00+00:00",
+      "content": "Revenue=120 million USD."
+    },
+    {
+      "id": "MARKET-FUTURE",
+      "tool": "get_stock_data",
+      "target_ticker": "EVAL01",
+      "requested_ticker": "EVAL01",
+      "source_ticker": "EVAL01",
+      "source_url": "https://fixtures.example.invalid/market/EVAL01/2025-02-01",
+      "source_provider": "fixture",
+      "source_kind": "primary",
+      "available_at": "2025-02-01",
+      "period_end": "2025-02-01",
+      "fetched_at": "2025-02-01T20:00:00+00:00",
+      "content": "Close=120 USD."
+    }
+  ]
+}

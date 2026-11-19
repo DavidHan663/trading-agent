@@ -69,7 +69,8 @@ class VendorRoutingTests(unittest.TestCase):
         set_config({"data_vendors": {"core_stock_apis": "yfinance,alpha_vantage"}})
         with self._route({"yfinance": _no_data, "alpha_vantage": _returns("AV_DATA")}):
             result = interface.route_to_vendor("get_stock_data", "AAPL", "2026-01-01", "2026-01-10")
-        self.assertEqual(result, "AV_DATA")
+        self.assertTrue(result.endswith("\nAV_DATA"))
+        self.assertIn('"provider": "alpha_vantage"', result)
 
     def test_primary_error_is_logged_not_masked(self):
         # #989: primary errors + fallback no-data -> NO_DATA, but the failure
@@ -94,7 +95,8 @@ class VendorRoutingTests(unittest.TestCase):
         set_config({"data_vendors": {"core_stock_apis": "default"}})
         with self._route({"yfinance": _no_data, "alpha_vantage": _returns("AV_DATA")}):
             result = interface.route_to_vendor("get_stock_data", "AAPL", "2026-01-01", "2026-01-10")
-        self.assertEqual(result, "AV_DATA")
+        self.assertTrue(result.endswith("\nAV_DATA"))
+        self.assertIn('"provider": "alpha_vantage"', result)
 
     def _route_method(self, method, vendors):
         return mock.patch.dict(interface.VENDOR_METHODS, {method: vendors}, clear=False)

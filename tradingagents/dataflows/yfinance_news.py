@@ -106,6 +106,8 @@ def get_news_yfinance(
             news_str += f"### {data['title']} (source: {data['publisher']})\n"
             if data["summary"]:
                 news_str += f"{data['summary']}\n"
+            if data["pub_date"]:
+                news_str += f"Published: {data['pub_date'].date().isoformat()}\n"
             if data["link"]:
                 news_str += f"Link: {data['link']}\n"
             news_str += "\n"
@@ -192,6 +194,8 @@ def get_global_news_yfinance(
             news_str += f"### {data['title']} (source: {data['publisher']})\n"
             if data["summary"]:
                 news_str += f"{data['summary']}\n"
+            if data["pub_date"]:
+                news_str += f"Published: {data['pub_date'].date().isoformat()}\n"
             if data["link"]:
                 news_str += f"Link: {data['link']}\n"
             news_str += "\n"

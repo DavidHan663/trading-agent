@@ -7,8 +7,9 @@ from langchain_core.callbacks import BaseCallbackHandler
 
 
 class EvaluationTrace(BaseCallbackHandler):
-    def __init__(self):
+    def __init__(self, *, capture_content=True):
         self.lock = threading.Lock()
+        self.capture_content = capture_content
         self.events = []
         self.started = {}
         self.tokens_in = 0
@@ -24,14 +25,19 @@ class EvaluationTrace(BaseCallbackHandler):
         with self.lock:
             self.started[str(run_id)] = monotonic()
             self.llm_calls += 1
-            self.events.append({"kind": "llm_start", "id": str(run_id),
-                                "messages": [[str(m.content) for m in batch] for batch in messages]})
+            event = {"kind": "llm_start", "id": str(run_id)}
+            if self.capture_content:
+                event["messages"] = [[str(m.content) for m in batch] for batch in messages]
+            self.events.append(event)
 
     def on_llm_start(self, serialized, prompts, *, run_id, **kwargs):
         with self.lock:
             self.started[str(run_id)] = monotonic()
             self.llm_calls += 1
-            self.events.append({"kind": "llm_start", "id": str(run_id), "prompts": prompts})
+            event = {"kind": "llm_start", "id": str(run_id)}
+            if self.capture_content:
+                event["prompts"] = prompts
+            self.events.append(event)
 
     def on_llm_end(self, response, *, run_id, **kwargs):
         with self.lock:
@@ -43,18 +49,26 @@ class EvaluationTrace(BaseCallbackHandler):
                     self.tokens_out += usage.get("output_tokens", 0)
                     self.usage_calls += 1
             started = self.started.pop(str(run_id), None)
-            self.events.append({"kind": "llm_end", "id": str(run_id),
-                                "seconds": monotonic() - started if started is not None else None,
-                                "output": [getattr(item, "text", "") for item in generations]})
+            event = {"kind": "llm_end", "id": str(run_id),
+                     "seconds": monotonic() - started if started is not None else None}
+            if self.capture_content:
+                event["output"] = [getattr(item, "text", "") for item in generations]
+            self.events.append(event)
 
     def on_llm_error(self, error, *, run_id, **kwargs):
         self.event("llm_error", id=str(run_id), error_type=type(error).__name__)
 
     def on_tool_start(self, serialized, input_str, *, run_id, **kwargs):
-        self.event("tool_start", id=str(run_id), name=serialized.get("name"), arguments=input_str)
+        fields = {"id": str(run_id), "name": serialized.get("name")}
+        if self.capture_content:
+            fields["arguments"] = input_str
+        self.event("tool_start", **fields)
 
     def on_tool_end(self, output, *, run_id, **kwargs):
-        self.event("tool_end", id=str(run_id), output=str(getattr(output, "content", output)))
+        fields = {"id": str(run_id)}
+        if self.capture_content:
+            fields["output"] = str(getattr(output, "content", output))
+        self.event("tool_end", **fields)
 
     def summary(self):
         with self.lock:

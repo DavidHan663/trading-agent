@@ -87,3 +87,32 @@ def invoke_structured_or_freetext(
 
     response = plain_llm.invoke(prompt)
     return response.content
+
+
+def invoke_structured_with_result(
+    structured_llm: Any | None,
+    plain_llm: Any,
+    prompt: Any,
+    render: Callable[[T], str],
+    agent_name: str,
+    diagnostics: dict | None = None,
+) -> tuple[str, T | None]:
+    """Keep the parsed object so a caller can validate structured citations."""
+    if structured_llm is not None:
+        try:
+            result = structured_llm.invoke(prompt)
+            if result is None:
+                if diagnostics is not None:
+                    diagnostics.update(status="fallback", reason="no_parsed_result")
+                raise ValueError("structured output returned no parsed result")
+            if diagnostics is not None:
+                diagnostics.update(status="structured")
+            return render(result), result
+        except Exception as exc:
+            if diagnostics is not None and "reason" not in diagnostics:
+                diagnostics.update(status="fallback", reason="structured_exception",
+                                   error_type=type(exc).__name__)
+            logger.warning("%s: structured-output invocation failed (%s); retrying once as free text", agent_name, exc)
+    elif diagnostics is not None:
+        diagnostics.update(status="fallback", reason="binding_unavailable")
+    return plain_llm.invoke(prompt).content, None

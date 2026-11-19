@@ -169,3 +169,28 @@ def test_existing_graph_runs_with_frozen_social_fetches_and_no_network(tmp_path,
     assert data_config._config == prior_config
     names = {event["name"] for event in trace.events if event["kind"] == "frozen_tool"}
     assert {"get_news", "stocktwits", "reddit"} <= names
+
+
+@pytest.mark.parametrize("case_id", ["missing-01", "conflict-01", "stale-01"])
+def test_graph_stops_on_unresolved_evidence_without_recording_hold(tmp_path, monkeypatch, case_id):
+    import tradingagents.graph.trading_graph as graph_module
+    from tradingagents.default_config import DEFAULT_CONFIG
+    from tradingagents.reporting import write_report_tree
+
+    llm = OfflineModel(responses=["**Rating**: Hold\nInsufficient evidence."])
+    monkeypatch.setattr(graph_module, "create_llm_client", lambda **kwargs: SimpleNamespace(get_llm=lambda: llm))
+    config = copy.deepcopy(DEFAULT_CONFIG)
+    memory_path = tmp_path / "memory.md"
+    config.update(memory_log_path=str(memory_path), checkpoint_enabled=False,
+                  results_dir=str(tmp_path / "logs"), data_cache_dir=str(tmp_path / "cache"))
+    case = next(c for c in load_dataset()[0]["cases"] if c["id"] == case_id)
+    state, signal = run_current_graph(case, config, EvaluationTrace())
+    assert signal == "REVIEW"
+    assert state["evidence_assessment"]["status"] == "insufficient"
+    assert "无法判断" in state["final_trade_decision"]
+    assert state["requery_count"] <= 2
+    if case_id == "missing-01":
+        assert state["requery_count"] == 2
+    assert not memory_path.exists() or not memory_path.read_text()
+    report = write_report_tree(state, case["ticker"], tmp_path / "report")
+    assert "Limited Decision" in report.read_text()

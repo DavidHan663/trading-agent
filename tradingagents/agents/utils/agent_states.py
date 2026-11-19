@@ -1,3 +1,4 @@
+import operator
 from typing import Annotated
 
 from langgraph.graph import MessagesState
@@ -49,6 +50,13 @@ class AgentState(MessagesState):
     asset_type: Annotated[str, "Asset type under analysis such as stock or crypto"]
     instrument_context: Annotated[str, "Deterministic ticker identity resolved at run start"]
     trade_date: Annotated[str, "What date we are trading at"]
+    evidence: Annotated[list[dict], operator.add]
+    analyst_citation_checks: Annotated[list[dict], operator.add]
+    citation_validation: dict
+    semantic_claim_validation: dict
+    evidence_assessment: dict
+    requery_count: int
+    requery_attempted: Annotated[list[str], operator.add]
 
     sender: Annotated[str, "Agent that sent this message"]
 

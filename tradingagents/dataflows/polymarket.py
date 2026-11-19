@@ -15,6 +15,8 @@ from datetime import datetime, timezone
 
 import requests
 
+from .utils import get_current_date
+
 logger = logging.getLogger(__name__)
 
 GAMMA_BASE = "https://gamma-api.polymarket.com"
@@ -65,7 +67,7 @@ def _is_forward_looking(market: dict, now: datetime) -> bool:
     )
 
 
-def get_prediction_markets(topic: str, limit: int | None = None) -> str:
+def get_prediction_markets(topic: str, limit: int | None = None, curr_date: str | None = None) -> str:
     """Return live prediction-market probabilities for an event topic.
 
     Args:
@@ -73,12 +75,20 @@ def get_prediction_markets(topic: str, limit: int | None = None) -> str:
             "US election", or a sector/company event.
         limit: Max markets to return (ranked by traded volume); ``None`` uses
             DEFAULT_LIMIT.
+        curr_date: Analysis date. Live odds have no historical snapshot and
+            are withheld whenever this date is before today.
 
     Returns:
         A markdown report of the most-traded open markets matching the topic,
         each with its implied probability, traded volume, resolution date, and
         recent (1-week) move.
     """
+    if curr_date and curr_date < get_current_date():
+        return (
+            f"<unavailable> Live prediction-market odds are withheld for historical "
+            f"analysis date {curr_date}; the provider does not expose a point-in-time snapshot."
+        )
+
     if limit is None:
         limit = DEFAULT_LIMIT
 

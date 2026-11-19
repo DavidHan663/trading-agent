@@ -1,0 +1,865 @@
+{
+  "schema_version": 5,
+  "dataset_version": "semantic-claims-v5-holdout-2026-11-15",
+  "kind": "blinded_hierarchical_semantic_claim_support",
+  "annotation_status": "New synthetic holdout; labels frozen before any v5 model calls by Codex expert-proxy, not independent financial-expert consensus.",
+  "decision_definitions": {
+    "allow": "Every material claim component is directly supported or transparently derived by arithmetic using same-period, same-unit evidence.",
+    "review": "At least one material component is contradicted, missing, only partly supported, or inferred beyond the supplied evidence."
+  },
+  "reason_definitions": {
+    "partial_support": "Evidence supports at least one material component, but not the full scope or strength of the claim.",
+    "contradiction": "Supplied evidence explicitly conflicts with a material factual assertion.",
+    "missing_evidence": "A specific material fact needed to establish or assess the claim is absent or explicitly unavailable.",
+    "unsupported_inference": "The claim adds a causal, predictive, universal, geographic, certainty, valuation, or investment implication not established by the evidence."
+  },
+  "reason_adjudication_policy": [
+    "For arithmetic, allow only when supplied inputs have compatible units and periods appropriate to the formula; require matching periods for same-period calculations and clearly identified comparable periods for growth calculations. A transparently reproduced result need not appear verbatim in the evidence.",
+    "Use partial_support when the evidence supports a narrower factual component than the claim asserts.",
+    "Use missing_evidence only when a specific fact needed to establish a material component is absent or explicitly unavailable; name that fact in the rationale.",
+    "Use unsupported_inference for the separate extrapolation, causal, predictive, universal, geographic, certainty, valuation, or investment step beyond the evidence.",
+    "Multiple reasons may co-occur only when each names a distinct issue; do not use missing_evidence as a generic synonym for unsupported inference.",
+    "Use contradiction only for explicit conflict with supplied evidence; absence alone is not contradiction."
+  ],
+  "evidence_catalog": [
+    {
+      "id": "V5-E01",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN01",
+      "content": "Paid subscriptions at quarter end were 2.4 million."
+    },
+    {
+      "id": "V5-E02",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN02",
+      "content": "Sales were $150 million in Q1 and $159 million in Q2."
+    },
+    {
+      "id": "V5-E03",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN03",
+      "content": "February production was 7,200 units."
+    },
+    {
+      "id": "V5-E04",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN04",
+      "content": "First-half capital expenditure totaled $11 million."
+    },
+    {
+      "id": "V5-E05",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN05",
+      "content": "Q2 operating margin: 14%."
+    },
+    {
+      "id": "V5-E06",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN06",
+      "content": "Cash and cash equivalents at June 30: $22 million."
+    },
+    {
+      "id": "V5-E07",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN07",
+      "content": "Q2 monthly active users were 530,000."
+    },
+    {
+      "id": "V5-E08",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN08",
+      "content": "Imports for the year were 35,000 tonnes."
+    },
+    {
+      "id": "V5-E09",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN09",
+      "content": "The filing names North, South, Online, and Wholesale as reportable segments."
+    },
+    {
+      "id": "V5-E10",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN10",
+      "content": "The earliest bond maturity listed is September 2028."
+    },
+    {
+      "id": "V5-E11",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN11",
+      "content": "Research and development expense for FY2024 was $9.2 million."
+    },
+    {
+      "id": "V5-E12",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN12",
+      "content": "March product return rate: 2.1%."
+    },
+    {
+      "id": "V5-E13",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN13",
+      "content": "Year-end distribution center count: eight."
+    },
+    {
+      "id": "V5-E14",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN14",
+      "content": "The device launch date was November 6, 2024."
+    },
+    {
+      "id": "V5-E15",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN15",
+      "content": "Quarterly advertising expense: $3.3 million."
+    },
+    {
+      "id": "V5-E16",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN16",
+      "content": "Tickets sold for the event: 18,500."
+    },
+    {
+      "id": "V5-E17",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN17",
+      "content": "A new warehouse opened in January. No revenue outlook or capacity estimate was disclosed."
+    },
+    {
+      "id": "V5-E18",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN18",
+      "content": "A small pilot recorded symptom improvement in some participants. No efficacy estimate or guarantee was reported."
+    },
+    {
+      "id": "V5-E19",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN19",
+      "content": "Q3 revenue was $34 million; net income was not included in the supplied excerpt."
+    },
+    {
+      "id": "V5-E20",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN20",
+      "content": "The defect rate increased from 3% to 4% in the latest quarter."
+    },
+    {
+      "id": "V5-E21",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN21",
+      "content": "Online orders were 40% higher during the promotion period. The record does not attribute the increase to the promotion."
+    },
+    {
+      "id": "V5-E22",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN22",
+      "content": "The last market price was $70. No valuation estimate or intrinsic value analysis was supplied."
+    },
+    {
+      "id": "V5-E23",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN23",
+      "content": "Management stated that it had not issued a backlog outlook for next year."
+    },
+    {
+      "id": "V5-E24",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN24",
+      "content": "The portfolio returned 4% last year. No benchmark comparison or forward estimate was provided."
+    },
+    {
+      "id": "V5-E25",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN25",
+      "content": "In an optional survey, 72% of 90 respondents preferred the premium device. The sample was not representative of all clinics."
+    },
+    {
+      "id": "V5-E26",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN26",
+      "content": "Long-term borrowings were $19 million; short-term balances were not included in the excerpt."
+    },
+    {
+      "id": "V5-E27",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN27",
+      "content": "The merger agreement was signed. No synergy estimate or integration plan was disclosed."
+    },
+    {
+      "id": "V5-E28",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN28",
+      "content": "Quarterly contribution revenue was $10 million and variable costs were $6.4 million; fixed operating expenses were not included in this excerpt."
+    },
+    {
+      "id": "V5-E29",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN29",
+      "content": "Operating costs increased 8% year over year."
+    },
+    {
+      "id": "V5-E30",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN30",
+      "content": "The founder purchased 5,000 shares. No later price evidence or causal analysis was supplied."
+    },
+    {
+      "id": "V5-E31",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN31",
+      "content": "The company served 85% of customers in one pilot district, which represents 4% of the national population."
+    },
+    {
+      "id": "V5-E32",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN32",
+      "content": "The parties signed a nonbinding letter of intent. Pricing and purchase volumes were not disclosed."
+    },
+    {
+      "id": "V5-E33",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN33",
+      "content": "Cash was $18 million and annual operating cash use was $14 million. Credit access and expected future cash needs were not provided."
+    },
+    {
+      "id": "V5-E34",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN34",
+      "content": "An eight-week study reported no severe adverse events among 55 participants."
+    },
+    {
+      "id": "V5-E35",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN35",
+      "content": "Reported ARR was $4.7 million; the disclosed target was $4.5 million."
+    },
+    {
+      "id": "V5-E36",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN36",
+      "content": "The CFO cited family reasons for leaving. The filing states that no regulatory inquiry was known to the company."
+    },
+    {
+      "id": "V5-E37",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN37",
+      "content": "A company survey gave the brand 4.7 out of 5. No competitor comparison was supplied."
+    },
+    {
+      "id": "V5-E38",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN38",
+      "content": "The authority accepted the permit application for review; a decision is pending."
+    },
+    {
+      "id": "V5-E39",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN39",
+      "content": "A distribution partnership was announced. No sales contribution or forward estimate was disclosed."
+    },
+    {
+      "id": "V5-E40",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-03-05",
+      "ticker": "SYN40",
+      "content": "Revenue was $12 million and operating expenses were $7 million. Interest, tax, depreciation, and other expenses were not supplied."
+    }
+  ],
+  "cases": [
+    {
+      "id": "v5-01",
+      "as_of": "2025-03-10",
+      "ticker": "SYN01",
+      "claim": "Quarterly paid subscriptions totaled 2.4 million.",
+      "evidence_ids": [
+        "V5-E01"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The count is stated directly."
+    },
+    {
+      "id": "v5-02",
+      "as_of": "2025-03-10",
+      "ticker": "SYN02",
+      "claim": "Sales rose 6% from $150 million to $159 million.",
+      "evidence_ids": [
+        "V5-E02"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The values support a 6% increase by arithmetic: (159-150)/150."
+    },
+    {
+      "id": "v5-03",
+      "as_of": "2025-03-10",
+      "ticker": "SYN03",
+      "claim": "The plant produced 7,200 units in February.",
+      "evidence_ids": [
+        "V5-E03"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The production count and month match."
+    },
+    {
+      "id": "v5-04",
+      "as_of": "2025-03-10",
+      "ticker": "SYN04",
+      "claim": "Capital expenditure for the half year was $11 million.",
+      "evidence_ids": [
+        "V5-E04"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The amount and period are directly stated."
+    },
+    {
+      "id": "v5-05",
+      "as_of": "2025-03-10",
+      "ticker": "SYN05",
+      "claim": "Operating margin was 14% in Q2.",
+      "evidence_ids": [
+        "V5-E05"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The margin is directly stated."
+    },
+    {
+      "id": "v5-06",
+      "as_of": "2025-03-10",
+      "ticker": "SYN06",
+      "claim": "Cash on hand at June 30 was $22 million.",
+      "evidence_ids": [
+        "V5-E06"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The balance and date match."
+    },
+    {
+      "id": "v5-07",
+      "as_of": "2025-03-10",
+      "ticker": "SYN07",
+      "claim": "The service had 530,000 monthly active users in Q2.",
+      "evidence_ids": [
+        "V5-E07"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The metric, count, and period are directly supported."
+    },
+    {
+      "id": "v5-08",
+      "as_of": "2025-03-10",
+      "ticker": "SYN08",
+      "claim": "The company imported 35,000 tonnes of material last year.",
+      "evidence_ids": [
+        "V5-E08"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The reported amount and unit are directly stated."
+    },
+    {
+      "id": "v5-09",
+      "as_of": "2025-03-10",
+      "ticker": "SYN09",
+      "claim": "The annual filing lists four reportable segments.",
+      "evidence_ids": [
+        "V5-E09"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The four-item count follows from the list."
+    },
+    {
+      "id": "v5-10",
+      "as_of": "2025-03-10",
+      "ticker": "SYN10",
+      "claim": "The next scheduled bond maturity is in 2028.",
+      "evidence_ids": [
+        "V5-E10"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The stated schedule supports the claim."
+    },
+    {
+      "id": "v5-11",
+      "as_of": "2025-03-10",
+      "ticker": "SYN11",
+      "claim": "Annual research and development expense was $9.2 million.",
+      "evidence_ids": [
+        "V5-E11"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The amount and fiscal period are stated."
+    },
+    {
+      "id": "v5-12",
+      "as_of": "2025-03-10",
+      "ticker": "SYN12",
+      "claim": "The product return rate was 2.1% in March.",
+      "evidence_ids": [
+        "V5-E12"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The rate and month match the record."
+    },
+    {
+      "id": "v5-13",
+      "as_of": "2025-03-10",
+      "ticker": "SYN13",
+      "claim": "The company operated eight distribution centers at year end.",
+      "evidence_ids": [
+        "V5-E13"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The count and time reference match."
+    },
+    {
+      "id": "v5-14",
+      "as_of": "2025-03-10",
+      "ticker": "SYN14",
+      "claim": "The device launched on November 6.",
+      "evidence_ids": [
+        "V5-E14"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The date matches the claim; the analysis date is later."
+    },
+    {
+      "id": "v5-15",
+      "as_of": "2025-03-10",
+      "ticker": "SYN15",
+      "claim": "Advertising expense was $3.3 million for the quarter.",
+      "evidence_ids": [
+        "V5-E15"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The amount and period are directly stated."
+    },
+    {
+      "id": "v5-16",
+      "as_of": "2025-03-10",
+      "ticker": "SYN16",
+      "claim": "The venue sold 18,500 seats for the event.",
+      "evidence_ids": [
+        "V5-E16"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The count is directly supported."
+    },
+    {
+      "id": "v5-17",
+      "as_of": "2025-03-10",
+      "ticker": "SYN17",
+      "claim": "Revenue will double next year because the company opened a new warehouse.",
+      "evidence_ids": [
+        "V5-E17"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The warehouse opening is reported, but no forecast or quantified causal impact supports the prediction."
+    },
+    {
+      "id": "v5-18",
+      "as_of": "2025-03-10",
+      "ticker": "SYN18",
+      "claim": "The treatment is guaranteed to reduce symptoms by 40%.",
+      "evidence_ids": [
+        "V5-E18"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The evidence provides no quantified effect or guarantee."
+    },
+    {
+      "id": "v5-19",
+      "as_of": "2025-03-10",
+      "ticker": "SYN19",
+      "claim": "The company earned $34 million in Q3.",
+      "evidence_ids": [
+        "V5-E19"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence"
+      ],
+      "rationale": "The amount is supported as revenue, while earnings are not established."
+    },
+    {
+      "id": "v5-20",
+      "as_of": "2025-03-10",
+      "ticker": "SYN20",
+      "claim": "The defect rate fell to 3%.",
+      "evidence_ids": [
+        "V5-E20"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "The supplied trend and current value conflict with the claim."
+    },
+    {
+      "id": "v5-21",
+      "as_of": "2025-03-10",
+      "ticker": "SYN21",
+      "claim": "The promotion caused online orders to rise 40%.",
+      "evidence_ids": [
+        "V5-E21"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "unsupported_inference"
+      ],
+      "rationale": "The increase and timing are supported, but causation is not."
+    },
+    {
+      "id": "v5-22",
+      "as_of": "2025-03-10",
+      "ticker": "SYN22",
+      "claim": "The shares are worth $70 each.",
+      "evidence_ids": [
+        "V5-E22"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The price is reported, but fair value is not established by market price alone."
+    },
+    {
+      "id": "v5-23",
+      "as_of": "2025-03-10",
+      "ticker": "SYN23",
+      "claim": "Management expects the backlog to double next year.",
+      "evidence_ids": [
+        "V5-E23"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction",
+        "missing_evidence"
+      ],
+      "rationale": "The evidence says no such outlook was issued and supplies no forecast."
+    },
+    {
+      "id": "v5-24",
+      "as_of": "2025-03-10",
+      "ticker": "SYN24",
+      "claim": "The portfolio will outperform its benchmark by 10% next year.",
+      "evidence_ids": [
+        "V5-E24"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Historical portfolio return does not support a future relative-performance prediction."
+    },
+    {
+      "id": "v5-25",
+      "as_of": "2025-03-10",
+      "ticker": "SYN25",
+      "claim": "All clinics prefer the premium device.",
+      "evidence_ids": [
+        "V5-E25"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The survey supports a respondent majority, but representative evidence for all clinics is absent and the universal claim overgeneralizes."
+    },
+    {
+      "id": "v5-26",
+      "as_of": "2025-03-10",
+      "ticker": "SYN26",
+      "claim": "The company has no outstanding borrowings.",
+      "evidence_ids": [
+        "V5-E26"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction",
+        "missing_evidence"
+      ],
+      "rationale": "Reported long-term debt contradicts the claim, while short-term debt remains undisclosed."
+    },
+    {
+      "id": "v5-27",
+      "as_of": "2025-03-10",
+      "ticker": "SYN27",
+      "claim": "The merger will create $6 million in annual cost savings.",
+      "evidence_ids": [
+        "V5-E27"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "No savings estimate or supporting basis is present."
+    },
+    {
+      "id": "v5-28",
+      "as_of": "2025-03-10",
+      "ticker": "SYN28",
+      "claim": "The company reported $3.6 million in operating profit for the quarter.",
+      "evidence_ids": [
+        "V5-E28"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence"
+      ],
+      "rationale": "The supplied revenue less variable costs yields contribution margin, not operating profit. Fixed operating expenses and other required operating costs are absent, so the complete claim is not established."
+    },
+    {
+      "id": "v5-29",
+      "as_of": "2025-03-10",
+      "ticker": "SYN29",
+      "claim": "Operating costs declined 8% year over year.",
+      "evidence_ids": [
+        "V5-E29"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "The direction of movement directly conflicts with the claim."
+    },
+    {
+      "id": "v5-30",
+      "as_of": "2025-03-10",
+      "ticker": "SYN30",
+      "claim": "The stock will rebound after the founder bought shares.",
+      "evidence_ids": [
+        "V5-E30"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The purchase is reported, but price recovery and causation are unsupported."
+    },
+    {
+      "id": "v5-31",
+      "as_of": "2025-03-10",
+      "ticker": "SYN31",
+      "claim": "The company controls 85% of the national rental market.",
+      "evidence_ids": [
+        "V5-E31"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The local figure is supported, but national market data is absent and the geographic extrapolation is unsupported."
+    },
+    {
+      "id": "v5-32",
+      "as_of": "2025-03-10",
+      "ticker": "SYN32",
+      "claim": "The new supply agreement guarantees $18 million of sales.",
+      "evidence_ids": [
+        "V5-E32"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The document is nonbinding and contains no sales commitment or amount."
+    },
+    {
+      "id": "v5-33",
+      "as_of": "2025-03-10",
+      "ticker": "SYN33",
+      "claim": "Cash reserves are sufficient for the next 18 months.",
+      "evidence_ids": [
+        "V5-E33"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Current cash and burn are stated, but the evidence does not establish the full 18-month liquidity outlook."
+    },
+    {
+      "id": "v5-34",
+      "as_of": "2025-03-10",
+      "ticker": "SYN34",
+      "claim": "The compound is proven safe for five years of use.",
+      "evidence_ids": [
+        "V5-E34"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Short-term results do not establish five-year safety."
+    },
+    {
+      "id": "v5-35",
+      "as_of": "2025-03-10",
+      "ticker": "SYN35",
+      "claim": "The company failed to reach its $4.5 million ARR target.",
+      "evidence_ids": [
+        "V5-E35"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "The reported amount exceeds the target."
+    },
+    {
+      "id": "v5-36",
+      "as_of": "2025-03-10",
+      "ticker": "SYN36",
+      "claim": "The CFO departure confirms a regulatory investigation.",
+      "evidence_ids": [
+        "V5-E36"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "contradiction",
+        "unsupported_inference"
+      ],
+      "rationale": "The departure is reported, but the asserted investigation conflicts with the disclosure and the causal conclusion is unsupported."
+    },
+    {
+      "id": "v5-37",
+      "as_of": "2025-03-10",
+      "ticker": "SYN37",
+      "claim": "The brand has the highest satisfaction in the sector.",
+      "evidence_ids": [
+        "V5-E37"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The score is reported, but no sector benchmark supports the superlative."
+    },
+    {
+      "id": "v5-38",
+      "as_of": "2025-03-10",
+      "ticker": "SYN38",
+      "claim": "The authority approved the factory permit.",
+      "evidence_ids": [
+        "V5-E38"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "Acceptance for review is not approval."
+    },
+    {
+      "id": "v5-39",
+      "as_of": "2025-03-10",
+      "ticker": "SYN39",
+      "claim": "The distribution partnership will increase annual sales by 25%.",
+      "evidence_ids": [
+        "V5-E39"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The partnership is factual, but the specific future sales effect is not established."
+    },
+    {
+      "id": "v5-40",
+      "as_of": "2025-03-10",
+      "ticker": "SYN40",
+      "claim": "The business is profitable with $5 million in net income.",
+      "evidence_ids": [
+        "V5-E40"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence"
+      ],
+      "rationale": "Revenue less operating expenses yields $5 million operating income, but net income requires other expense information."
+    }
+  ]
+}

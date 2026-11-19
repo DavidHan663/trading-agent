@@ -37,6 +37,11 @@ class Propagator:
             "asset_type": asset_type,
             "instrument_context": instrument_context,
             "trade_date": str(trade_date),
+            "evidence": [],
+            "analyst_citation_checks": [],
+            "semantic_claim_validation": {},
+            "requery_count": 0,
+            "requery_attempted": [],
             "past_context": past_context,
             "investment_debate_state": InvestDebateState(
                 {

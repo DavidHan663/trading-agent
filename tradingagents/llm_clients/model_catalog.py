@@ -143,16 +143,16 @@ MODEL_OPTIONS: ProviderModeOptions = {
             ("Grok 4.20 Multi-Agent - Multi-agent reasoning", "grok-4.20-multi-agent-0309"),
         ],
     },
-    # DeepSeek: the deepseek-chat / deepseek-reasoner aliases are deprecated
-    # (2026-07-24) and now map to V4 Flash; expose the V4 IDs directly. V4 Flash
-    # serves both non-thinking and thinking modes (the DeepSeekChatOpenAI client
-    # handles the reasoning_content round-trip).
+    # Official current Flash alias; retain older IDs for saved configurations.
+    # DeepSeekChatOpenAI preserves reasoning_content across tool-call turns.
     "deepseek": {
         "quick": [
-            ("DeepSeek V4 Flash - Latest fast model, thinking + non-thinking", "deepseek-v4-flash"),
+            ("DeepSeek Flash - Current Flash model", "deepseek-flash"),
+            ("DeepSeek V4 Flash - Legacy alias", "deepseek-v4-flash"),
             ("Custom model ID", "custom"),
         ],
         "deep": [
+            ("DeepSeek Flash - Current Flash model", "deepseek-flash"),
             ("DeepSeek V4 Pro - Latest flagship", "deepseek-v4-pro"),
             ("DeepSeek V4 Flash - Fast, supports thinking", "deepseek-v4-flash"),
             ("Custom model ID", "custom"),

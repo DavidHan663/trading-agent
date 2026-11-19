@@ -24,6 +24,8 @@ from tradingagents.agents.utils.agent_states import AgentState
 from .analyst_execution import build_analyst_execution_plan
 from .analyst_subgraph import build_analyst_subgraph, make_analyst_wrapper
 from .conditional_logic import ConditionalLogic
+from .evidence_gate import assess_evidence, limited_decision, requery_evidence, route_evidence
+from .semantic_claim_gate import create_semantic_claim_gate
 
 # Every target a shared conditional router can return. Each edge driven by the
 # router maps all of them, so a fall-through return (e.g. under prompt/i18n/
@@ -90,6 +92,7 @@ class GraphSetup:
         neutral_analyst = create_neutral_debator(self.quick_thinking_llm)
         conservative_analyst = create_conservative_debator(self.quick_thinking_llm)
         portfolio_manager_node = create_portfolio_manager(self.deep_thinking_llm)
+        semantic_claim_gate_node = create_semantic_claim_gate(self.deep_thinking_llm)
 
         # Create workflow
         workflow = StateGraph(AgentState)
@@ -103,10 +106,14 @@ class GraphSetup:
         workflow.add_node("Neutral Analyst", neutral_analyst)
         workflow.add_node("Conservative Analyst", conservative_analyst)
         workflow.add_node("Portfolio Manager", portfolio_manager_node)
+        workflow.add_node("Semantic Claim Gate", semantic_claim_gate_node)
+        workflow.add_node("Evidence Gate", assess_evidence)
+        workflow.add_node("Evidence Requery", requery_evidence)
+        workflow.add_node("Evidence Limited", limited_decision)
 
         # Analysts are independent. Each runs inside a self-contained ReAct
         # subgraph with a private messages channel. Start fans out to every
-        # selected analyst and their completion edges fan in at Bull Researcher.
+        # selected analyst and their completion edges fan in at Evidence Gate.
         for spec in plan.specs:
             subgraph = build_analyst_subgraph(
                 spec,
@@ -116,7 +123,15 @@ class GraphSetup:
             )
             workflow.add_node(spec.agent_node, make_analyst_wrapper(subgraph, spec))
             workflow.add_edge(START, spec.agent_node)
-            workflow.add_edge(spec.agent_node, "Bull Researcher")
+            workflow.add_edge(spec.agent_node, "Evidence Gate")
+
+        workflow.add_conditional_edges("Evidence Gate", route_evidence, {
+            "Bull Researcher": "Bull Researcher",
+            "Evidence Requery": "Evidence Requery",
+            "Evidence Limited": "Evidence Limited",
+        })
+        workflow.add_edge("Evidence Requery", "Evidence Gate")
+        workflow.add_edge("Evidence Limited", END)
 
         # Both research-debate edges share the complete DEBATE_PATH_MAP (#1088).
         for debate_node in ("Bull Researcher", "Bear Researcher"):
@@ -135,6 +150,7 @@ class GraphSetup:
                 RISK_ANALYSIS_PATH_MAP,
             )
 
-        workflow.add_edge("Portfolio Manager", END)
+        workflow.add_edge("Portfolio Manager", "Semantic Claim Gate")
+        workflow.add_edge("Semantic Claim Gate", END)
 
         return workflow

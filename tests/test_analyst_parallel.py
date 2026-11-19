@@ -34,7 +34,7 @@ def _stub_should_continue(spec):
 
 
 class AnalystWrapperIsolationTests(unittest.TestCase):
-    def test_wrapper_returns_only_report_and_seeds_fresh_messages(self):
+    def test_wrapper_returns_report_and_evidence_without_leaking_messages(self):
         spec = build_analyst_execution_plan(["market"]).specs[0]
         captured = {}
 
@@ -54,7 +54,10 @@ class AnalystWrapperIsolationTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(output, {spec.report_key: "REPORT"})
+        self.assertEqual(output[spec.report_key], "REPORT")
+        self.assertEqual(output["evidence"], [])
+        self.assertEqual(output["analyst_citation_checks"][0]["status"], "no_evidence")
+        self.assertNotIn("messages", output)
         self.assertEqual(len(captured["input"]["messages"]), 1)
         self.assertEqual(captured["input"]["company_of_interest"], "NVDA")
 

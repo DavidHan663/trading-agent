@@ -12,6 +12,9 @@ import requests
 
 import tradingagents.dataflows.config as config_module
 import tradingagents.default_config as default_config
+from tradingagents.agents.utils.prediction_markets_tools import (
+    get_prediction_markets as prediction_tool,
+)
 from tradingagents.dataflows import interface, polymarket
 from tradingagents.dataflows.config import set_config
 
@@ -92,6 +95,17 @@ class PolymarketFormatTests(unittest.TestCase):
 
 @pytest.mark.unit
 class PolymarketResilienceTests(unittest.TestCase):
+    def test_agent_tool_requires_analysis_date(self):
+        out = prediction_tool.invoke({"topic": "Fed"})
+        self.assertIn("Analysis date is required", out)
+
+    def test_historical_date_withholds_live_odds_without_request(self):
+        with mock.patch.object(polymarket, "get_current_date", return_value="2026-11-14"), \
+                mock.patch.object(polymarket, "_request") as request:
+            out = polymarket.get_prediction_markets("Fed", curr_date="2026-11-13")
+        self.assertIn("withheld", out)
+        request.assert_not_called()
+
     def test_network_error_degrades_gracefully(self):
         # An external-service hiccup must not raise into the analyst.
         with mock.patch.object(

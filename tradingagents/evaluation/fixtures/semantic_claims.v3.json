@@ -1,0 +1,47 @@
+{
+  "schema_version": 3,
+  "dataset_version": "semantic-claims-v3-2026-11-15",
+  "kind": "hierarchical_semantic_claim_support_overrides",
+  "parent_dataset": "semantic_claims.v2.json",
+  "parent_dataset_sha256": "0758fda38906bec1f20c974646bec9ee783b928997414311462a1eb8fc7e4d46",
+  "annotation_status": "Codex expert-proxy labels; v3 multi-label adjudication; not independent financial-expert consensus.",
+  "reason_adjudication_policy": [
+    "Use missing_evidence when a material fact needed to establish or assess the claim is absent or explicitly unavailable.",
+    "Use unsupported_inference when the claim adds an unsupported causal, predictive, certainty, valuation, or investment conclusion.",
+    "These reasons may co-occur: identify the missing fact and the unsupported inferential step separately.",
+    "Use contradiction when supplied evidence explicitly conflicts with a material factual assertion; omission alone is not contradiction.",
+    "Do not require issuer identity as missing when the evidence record's supplied ticker metadata matches the claim subject; the reviewer receives this metadata in v3."
+  ],
+  "case_overrides": [
+    {
+      "id": "v2-review-02",
+      "reason_flags": ["partial_support", "missing_evidence", "unsupported_inference"],
+      "rationale": "Revenue growth is supported and the evidence record is associated with VTX. The evidence contains no next-year share-performance data; the guarantee and outperformance conclusion are unsupported inferences."
+    },
+    {
+      "id": "v2-review-03",
+      "reason_flags": ["partial_support", "contradiction", "missing_evidence"],
+      "rationale": "The guidance midpoint is calculable. The evidence explicitly says no full-year margin guidance was provided, which conflicts with the claim that management forecast higher margins; the asserted forecast information is also absent."
+    },
+    {
+      "id": "v2-review-05",
+      "reason_flags": ["partial_support", "contradiction", "missing_evidence", "unsupported_inference"],
+      "rationale": "The respondent majority is supported, but the evidence says the voluntary survey is not representative of all customers and does not establish later purchase behavior. Generalizing and forecasting from it is unsupported."
+    },
+    {
+      "id": "v2-review-06",
+      "reason_flags": ["partial_support", "missing_evidence", "unsupported_inference"],
+      "rationale": "The price-to-moving-average comparison is supported. The snapshot explicitly lacks intrinsic-value information, and a technical price comparison does not establish fundamental undervaluation."
+    },
+    {
+      "id": "v2-review-10",
+      "reason_flags": ["partial_support", "missing_evidence", "unsupported_inference"],
+      "rationale": "The executive purchase is reported. No subsequent price-performance or causal evidence is supplied, so the guarantee that price will rise is unsupported."
+    },
+    {
+      "id": "v2-review-12",
+      "reason_flags": ["partial_support", "missing_evidence", "unsupported_inference"],
+      "rationale": "Shipment growth is calculable. No customer-loyalty measure or causal attribution is supplied, so the stated reason for shipment growth is unsupported."
+    }
+  ]
+}

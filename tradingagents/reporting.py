@@ -6,8 +6,27 @@ CLI and ``TradingAgentsGraph.save_reports`` both call this, so a headless / API
 run produces the same on-disk report tree a CLI run does.
 """
 
+import json
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlsplit
+
+from tradingagents.evidence import unique_records
+
+
+def _source_link(value):
+    """Only render ordinary HTTP(S) URLs as Markdown links."""
+    if not isinstance(value, str) or any(c.isspace() or c in '<>()' for c in value):
+        return None
+    try:
+        parsed = urlsplit(value)
+        if parsed.scheme.lower() not in {"http", "https"} or not parsed.hostname:
+            return None
+        if parsed.username is not None or parsed.password is not None:
+            return None
+        return value
+    except ValueError:
+        return None
 
 
 def write_report_tree(final_state: dict, ticker: str, save_path) -> Path:
@@ -94,6 +113,103 @@ def write_report_tree(final_state: dict, ticker: str, save_path) -> Path:
             portfolio_dir.mkdir(exist_ok=True)
             (portfolio_dir / "decision.md").write_text(risk["judge_decision"], encoding="utf-8")
             sections.append(f"## V. Portfolio Manager Decision\n\n### Portfolio Manager\n{risk['judge_decision']}")
+
+    assessment = final_state.get("evidence_assessment")
+    if assessment and assessment.get("status") == "insufficient":
+        sections.append(f"## V. Limited Decision\n\n{final_state.get('final_trade_decision', '')}")
+
+    evidence = unique_records(final_state.get("evidence", []))
+    validation = final_state.get("citation_validation")
+    semantic_validation = final_state.get("semantic_claim_validation")
+    analyst_checks = final_state.get("analyst_citation_checks", [])
+    if evidence or validation or semantic_validation or analyst_checks or assessment:
+        (save_path / "evidence.json").write_text(
+            json.dumps({"records": evidence, "analyst_checks": analyst_checks,
+                        "validation": validation, "semantic_validation": semantic_validation,
+                        "assessment": assessment}, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        evidence_lines = ["## VI. Evidence and Citation Checks", ""]
+        if assessment:
+            evidence_lines.append(f"Evidence sufficiency: **{assessment['status']}**; "
+                                  f"requeries: {assessment.get('requery_count', 0)}.")
+            for gap in assessment.get("missing", []):
+                evidence_lines.append(f"- Gap: {gap}")
+            for conflict in assessment.get("conflicts", []):
+                evidence_lines.append(f"- Conflict: {conflict['metric']} · IDs: {', '.join(conflict['evidence_ids'])}")
+        for record in evidence:
+            excerpt = record["content"].replace("\n", " ")[:240]
+            evidence_lines.append(
+                f"- **{record['id']}** · {record['tool']} · source: {record['source_url'] or 'unknown'} "
+                f"· published/available: {record['available_at'] or 'unknown'} "
+                f"· period: {record['period_end'] or 'unknown'} · {excerpt}"
+            )
+        if validation:
+            evidence_lines.extend([
+                "",
+                f"Atomic claim check: **{validation['status']}**. Facts check citation metadata and literal values; "
+                "calculations check arithmetic reproducibility; judgments always require semantic review. "
+                "Source authenticity, formula choice, and investment correctness were not verified.",
+            ])
+            structured = validation.get("structured_output", {})
+            if structured.get("status") == "fallback":
+                evidence_lines.append(f"Structured output fallback: {structured.get('reason', 'unknown')}"
+                                      f" ({structured.get('error_type', 'type unavailable')}).")
+            for claim in validation.get("claims", []):
+                issues = ", ".join(claim["issues"]) or "none"
+                identity = claim.get("claim_id") or "legacy"
+                calculation = (
+                    f" · arithmetic: {claim.get('arithmetic_status', 'unknown')}"
+                    f" · computed: {claim.get('computed_value')} {claim.get('result_unit') or ''}".rstrip()
+                    if claim.get("claim_type") == "calculation" else ""
+                )
+                basis = (
+                    f" · basis: {', '.join(claim.get('basis_claim_ids', [])) or 'none'}"
+                    if claim.get("claim_type") == "judgment" else ""
+                )
+                evidence_lines.append(
+                    f"- **{claim['status']}** · {identity}/{claim.get('claim_type', 'legacy')}: "
+                    f"{claim['claim']}{calculation}{basis} · issues: {issues}"
+                )
+        if semantic_validation:
+            evidence_by_id = {record['id']: record for record in evidence}
+            usage = semantic_validation.get("usage", {})
+            evidence_lines.extend([
+                "",
+                f"Semantic claim gate (shadow mode): **{semantic_validation.get('status', 'review')}**. "
+                f"Model invocations: {semantic_validation.get('model_invocations', 0)}/"
+                f"{semantic_validation.get('max_model_invocations', 0)}. "
+                "This check did not change the final rating.",
+                f"Reviewer independence: {semantic_validation.get('reviewer_independence', 'unknown')}. "
+                f"Input/output tokens: {usage.get('input_tokens', 0)}/{usage.get('output_tokens', 0)}; "
+                f"usage complete: {usage.get('token_usage_complete', False)}.",
+            ])
+            if semantic_validation.get("reason"):
+                evidence_lines.append(f"- Gate-level reason: {semantic_validation['reason']}")
+            for claim in semantic_validation.get("claims", []):
+                flags = ", ".join(claim.get("reason_flags", [])) or "none"
+                failure = claim.get("failure_reason") or "none"
+                evidence_lines.append(
+                    f"- **{claim.get('decision', 'review')}** · "
+                    f"{claim.get('claim_id') or 'legacy'}/{claim.get('claim_type', 'legacy')}: "
+                    f"{claim.get('claim', '')} · reasons: {flags} · failure: {failure}"
+                )
+                if claim.get("reasoning"):
+                    evidence_lines.append(f"  - Explanation: {claim['reasoning']}")
+                for missing in claim.get("missing_information", []):
+                    evidence_lines.append(f"  - Missing information: {missing}")
+                for quote in claim.get("evidence_quotes", []):
+                    evidence_id = quote.get("evidence_id", "unknown")
+                    source = _source_link(evidence_by_id.get(evidence_id, {}).get("source_url"))
+                    source_text = f" · [source]({source})" if source else ""
+                    evidence_lines.append(
+                        f"  - Evidence {evidence_id}: {quote.get('quote', '')}{source_text}"
+                    )
+        if analyst_checks:
+            evidence_lines.extend(["", "Analyst report ID checks (presence only):"])
+            for check in analyst_checks:
+                evidence_lines.append(f"- {check['analyst']}: {check['status']}")
+        sections.append("\n".join(evidence_lines))
 
     # Write consolidated report
     header = f"# Trading Analysis Report: {ticker}\n\nGenerated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"

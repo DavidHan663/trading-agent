@@ -463,6 +463,8 @@ class TestSentimentAnalystAgent:
         result = analyst(_make_sentiment_state())
         assert len(result["messages"]) == 1
         assert result["sentiment_report"] == result["messages"][0].content
+        assert len(result["evidence"]) == 3
+        assert all(record["id"] in str(captured["prompt"]) for record in result["evidence"])
 
     def test_prompt_contains_ticker(self):
         captured = {}

@@ -46,7 +46,7 @@ def test_auth_and_security_headers(client):
 
 
 def test_config_does_not_expose_secrets(client, monkeypatch):
-    monkeypatch.setenv("OPENAI_API_KEY", "server-secret-should-never-be-shared")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "server-secret-should-never-be-shared")
     response = client.get("/api/config")
     assert response.json()["configured"]
     assert "server-secret" not in response.text
@@ -87,6 +87,27 @@ def test_queue_capacity_and_reports(client, tmp_path):
     assert "attachment" in response.headers["content-disposition"]
     assert response.headers["x-content-type-options"] == "nosniff"
     assert client.get("/api/jobs/unknown").status_code == 404
+
+
+def test_report_evidence_auth_legacy_and_invalid_data(client, tmp_path):
+    job = client.post("/api/jobs", json=PAYLOAD).json()
+    path = f"/api/jobs/{job['id']}/evidence"
+    assert client.get(path, auth=("admin", "wrong")).status_code == 401
+    assert client.get(path).status_code == 409
+    directory = tmp_path / "reports" / job["id"]
+    directory.mkdir(parents=True)
+    client.app.state.store.finish(job["id"], signal="Hold")
+    assert client.get(path).json() == {"available": False, "claims": [], "records": []}
+    (directory / "evidence.json").write_text(json.dumps({
+        "records": [{"id": "E1", "source_url": "https://example.com", "content": "private body"}],
+        "semantic_validation": {"claims": [{"claim_id": "C1", "claim": "example", "decision": "review", "reasoning": "missing"}]},
+    }))
+    data = client.get(path).json()
+    assert data["claims"][0]["reasoning"] == "missing"
+    assert data["records"][0]["source_url"] == "https://example.com"
+    assert "content" not in data["records"][0]
+    (directory / "evidence.json").write_text('{invalid')
+    assert client.get(path).status_code == 500
 
 
 def test_restart_recovery(tmp_path):

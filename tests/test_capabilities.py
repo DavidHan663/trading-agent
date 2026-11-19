@@ -11,6 +11,12 @@ from tradingagents.llm_clients.capabilities import (
 
 @pytest.mark.unit
 class TestExactIdMatches:
+    def test_current_deepseek_flash_alias_keeps_thinking_compatibility(self):
+        caps = get_capabilities("deepseek-flash")
+        assert caps.requires_reasoning_content_roundtrip
+        assert not caps.supports_tool_choice
+        assert not caps.supports_json_schema
+
     def test_deepseek_chat_supports_tool_choice(self):
         caps = get_capabilities("deepseek-chat")
         assert caps.supports_tool_choice is True

@@ -42,6 +42,7 @@ from tradingagents.agents.utils.structured import (
 )
 from tradingagents.dataflows.reddit import fetch_reddit_posts
 from tradingagents.dataflows.stocktwits import fetch_stocktwits_messages
+from tradingagents.evidence import evidence_label, records_from_tool, strip_provider_provenance
 
 
 def _seven_days_back(trade_date: str) -> str:
@@ -74,14 +75,19 @@ def create_sentiment_analyst(llm):
             ticker, limit=30, start_date=start_date, end_date=end_date
         )
         reddit_block = fetch_reddit_posts(ticker, start_date=start_date, end_date=end_date)
+        news_evidence = records_from_tool("get_news", {"ticker": ticker}, news_block, ticker)
+        stocktwits_evidence = records_from_tool("stocktwits", {"ticker": ticker}, stocktwits_block, ticker)
+        reddit_evidence = records_from_tool("reddit", {"ticker": ticker}, reddit_block, ticker)
+        evidence = news_evidence + stocktwits_evidence + reddit_evidence
+        news_block = strip_provider_provenance(news_block)
 
         system_message = _build_system_message(
             ticker=ticker,
             start_date=start_date,
             end_date=end_date,
-            news_block=news_block,
-            stocktwits_block=stocktwits_block,
-            reddit_block=reddit_block,
+            news_block=evidence_label(news_evidence) + news_block,
+            stocktwits_block=evidence_label(stocktwits_evidence) + stocktwits_block,
+            reddit_block=evidence_label(reddit_evidence) + reddit_block,
         )
 
         prompt = ChatPromptTemplate.from_messages(
@@ -122,6 +128,7 @@ def create_sentiment_analyst(llm):
         return {
             "messages": [AIMessage(content=report_text)],
             "sentiment_report": report_text,
+            "evidence": evidence,
         }
 
     return sentiment_analyst_node
@@ -140,6 +147,8 @@ def _build_system_message(
     return f"""You are a financial market sentiment analyst. Your task is to produce a comprehensive sentiment report for {ticker} covering the period from {start_date} to {end_date}, drawing on three complementary data sources that have already been collected for you.
 
 ## Data sources (pre-fetched, in this prompt)
+
+Cite the Evidence ID beside key source-based sentiment or event claims. If no ID is available, mark the claim unverified.
 
 ### News headlines — Yahoo Finance, past 7 days
 Institutional framing. Fact-driven, slower-moving signal.

@@ -1,0 +1,853 @@
+{
+  "schema_version": 4,
+  "dataset_version": "semantic-claims-v4-holdout-2026-11-15",
+  "kind": "blinded_hierarchical_semantic_claim_support",
+  "annotation_status": "New synthetic holdout; labels authored before any v4 model calls by Codex expert-proxy, not independent financial-expert consensus.",
+  "decision_definitions": {
+    "allow": "Every material claim component is directly supported or transparently derived from supplied evidence.",
+    "review": "At least one material part is unsupported, contradicted, incomplete, or overgeneralized."
+  },
+  "reason_definitions": {
+    "partial_support": "Some material part is supported, but the claim is incomplete or overstates what the evidence establishes.",
+    "contradiction": "Supplied evidence explicitly conflicts with a material factual assertion.",
+    "missing_evidence": "A fact required to establish or assess the claim is absent or explicitly unavailable.",
+    "unsupported_inference": "The claim adds an unsupported causal, predictive, certainty, valuation, or investment implication."
+  },
+  "evidence_catalog": [
+    {
+      "id": "HOLD-E01",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H01",
+      "content": "Quarterly revenue was $120 million."
+    },
+    {
+      "id": "HOLD-E02",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H02",
+      "content": "Revenue was $80 million in the prior quarter and $100 million in the current quarter."
+    },
+    {
+      "id": "HOLD-E03",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H03",
+      "content": "Shares outstanding at quarter end were 40 million."
+    },
+    {
+      "id": "HOLD-E04",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H04",
+      "content": "Reported gross margin: 32%."
+    },
+    {
+      "id": "HOLD-E05",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H05",
+      "content": "Cash and cash equivalents were $55 million on June 30."
+    },
+    {
+      "id": "HOLD-E06",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H06",
+      "content": "Operating expenses for the period were $18 million."
+    },
+    {
+      "id": "HOLD-E07",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H07",
+      "content": "Net loss for the quarter was $4 million."
+    },
+    {
+      "id": "HOLD-E08",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H08",
+      "content": "Quarterly shipments totaled 12,000 units."
+    },
+    {
+      "id": "HOLD-E09",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H09",
+      "content": "The company reports three segments: Devices, Services, and Cloud."
+    },
+    {
+      "id": "HOLD-E10",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H10",
+      "content": "Current portion of debt: $9 million."
+    },
+    {
+      "id": "HOLD-E11",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H11",
+      "content": "May repurchases: 200,000 shares."
+    },
+    {
+      "id": "HOLD-E12",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H12",
+      "content": "Effective income tax rate for the quarter: 21%."
+    },
+    {
+      "id": "HOLD-E13",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H13",
+      "content": "As of year end, the company operated 14 Canadian retail locations."
+    },
+    {
+      "id": "HOLD-E14",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H14",
+      "content": "The new product launched March 4."
+    },
+    {
+      "id": "HOLD-E15",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H15",
+      "content": "R&D expense for the fiscal year was $7.5 million."
+    },
+    {
+      "id": "HOLD-E16",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H16",
+      "content": "Monthly active users at quarter end were 1.8 million."
+    },
+    {
+      "id": "HOLD-E17",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H17",
+      "content": "The company added one supplier in October. No revenue forecast or quantified capacity impact was disclosed."
+    },
+    {
+      "id": "HOLD-E18",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H18",
+      "content": "Management described the product as an opportunity. No market-share target or guarantee was provided."
+    },
+    {
+      "id": "HOLD-E19",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H19",
+      "content": "Quarterly revenue was $50 million; net income was not provided in this excerpt."
+    },
+    {
+      "id": "HOLD-E20",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H20",
+      "content": "The company reported customer retention of 88% for the quarter."
+    },
+    {
+      "id": "HOLD-E21",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H21",
+      "content": "Churn fell by 20% after the feature launch. The filing does not attribute the change to the feature."
+    },
+    {
+      "id": "HOLD-E22",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H22",
+      "content": "The market price was $40. No valuation estimate or intrinsic value analysis was supplied."
+    },
+    {
+      "id": "HOLD-E23",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H23",
+      "content": "Management said it had not issued a margin outlook for next year."
+    },
+    {
+      "id": "HOLD-E24",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H24",
+      "content": "The company reported quarterly sales of $72 million. No consensus estimates or forward guidance were included."
+    },
+    {
+      "id": "HOLD-E25",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H25",
+      "content": "In an optional survey, 61% of 120 respondents selected the premium plan. The sample was not representative."
+    },
+    {
+      "id": "HOLD-E26",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H26",
+      "content": "Long-term borrowings were $24 million; short-term borrowings were not disclosed in this excerpt."
+    },
+    {
+      "id": "HOLD-E27",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H27",
+      "content": "The acquisition agreement was signed. Financial impact estimates were not disclosed."
+    },
+    {
+      "id": "HOLD-E28",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H28",
+      "content": "Operating cash flow was $12 million and capital expenditures were $3 million."
+    },
+    {
+      "id": "HOLD-E29",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H29",
+      "content": "Operating expenses increased 15% year over year."
+    },
+    {
+      "id": "HOLD-E30",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H30",
+      "content": "An executive purchased 8,000 shares. No subsequent price data or causal analysis was provided."
+    },
+    {
+      "id": "HOLD-E31",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H31",
+      "content": "The company serves 90% of customers in a pilot region representing 5% of the national population."
+    },
+    {
+      "id": "HOLD-E32",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H32",
+      "content": "A nonbinding memorandum of understanding was signed; commercial terms were not disclosed."
+    },
+    {
+      "id": "HOLD-E33",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H33",
+      "content": "Cash was $30 million and annual operating cash use was $20 million. Credit availability and future cash needs were not provided."
+    },
+    {
+      "id": "HOLD-E34",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H34",
+      "content": "A six-week phase 1 study reported no serious adverse events among 40 participants."
+    },
+    {
+      "id": "HOLD-E35",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H35",
+      "content": "Quarterly shipments were 10,400 units; the disclosed target was 10,000."
+    },
+    {
+      "id": "HOLD-E36",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H36",
+      "content": "The CEO announced a departure for personal reasons. The filing reports no accounting investigation."
+    },
+    {
+      "id": "HOLD-E37",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H37",
+      "content": "A company survey reported a satisfaction score of 4.2 out of 5. No competitor comparison was included."
+    },
+    {
+      "id": "HOLD-E38",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H38",
+      "content": "The regulator accepted the application for review; no approval decision was announced."
+    },
+    {
+      "id": "HOLD-E39",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H39",
+      "content": "The companies announced a partnership. No revenue contribution or forecast was disclosed."
+    },
+    {
+      "id": "HOLD-E40",
+      "source": "Synthetic frozen evaluation record",
+      "available_at": "2025-01-01",
+      "ticker": "H40",
+      "content": "Revenue was $20 million and cost of revenue was $14 million."
+    }
+  ],
+  "cases": [
+    {
+      "id": "holdout-01",
+      "as_of": "2025-01-10",
+      "ticker": "H01",
+      "claim": "The company reported revenue of $120 million for the quarter.",
+      "evidence_ids": [
+        "HOLD-E01"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The supplied filing directly reports the quarterly revenue."
+    },
+    {
+      "id": "holdout-02",
+      "as_of": "2025-01-10",
+      "ticker": "H02",
+      "claim": "Revenue increased from $80 million to $100 million, a 25% increase.",
+      "evidence_ids": [
+        "HOLD-E02"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The supplied values support the stated 25% arithmetic increase."
+    },
+    {
+      "id": "holdout-03",
+      "as_of": "2025-01-10",
+      "ticker": "H03",
+      "claim": "The company reported 40 million shares outstanding.",
+      "evidence_ids": [
+        "HOLD-E03"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The share count is directly stated."
+    },
+    {
+      "id": "holdout-04",
+      "as_of": "2025-01-10",
+      "ticker": "H04",
+      "claim": "Gross margin was 32% in the reported quarter.",
+      "evidence_ids": [
+        "HOLD-E04"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The percentage is stated verbatim."
+    },
+    {
+      "id": "holdout-05",
+      "as_of": "2025-01-10",
+      "ticker": "H05",
+      "claim": "Cash and cash equivalents totaled $55 million at quarter end.",
+      "evidence_ids": [
+        "HOLD-E05"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The amount and reporting date match the evidence."
+    },
+    {
+      "id": "holdout-06",
+      "as_of": "2025-01-10",
+      "ticker": "H06",
+      "claim": "The company recorded operating expenses of $18 million.",
+      "evidence_ids": [
+        "HOLD-E06"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The expense amount is directly supported."
+    },
+    {
+      "id": "holdout-07",
+      "as_of": "2025-01-10",
+      "ticker": "H07",
+      "claim": "The reported quarterly loss was $4 million.",
+      "evidence_ids": [
+        "HOLD-E07"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The claim repeats the reported net loss."
+    },
+    {
+      "id": "holdout-08",
+      "as_of": "2025-01-10",
+      "ticker": "H08",
+      "claim": "The company shipped 12,000 units during the quarter.",
+      "evidence_ids": [
+        "HOLD-E08"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The shipment count is directly reported."
+    },
+    {
+      "id": "holdout-09",
+      "as_of": "2025-01-10",
+      "ticker": "H09",
+      "claim": "The filing lists three operating segments.",
+      "evidence_ids": [
+        "HOLD-E09"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The count follows directly from the listed segments."
+    },
+    {
+      "id": "holdout-10",
+      "as_of": "2025-01-10",
+      "ticker": "H10",
+      "claim": "Debt due within one year was $9 million.",
+      "evidence_ids": [
+        "HOLD-E10"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The claim matches the disclosed current debt."
+    },
+    {
+      "id": "holdout-11",
+      "as_of": "2025-01-10",
+      "ticker": "H11",
+      "claim": "The company repurchased 200,000 shares during May.",
+      "evidence_ids": [
+        "HOLD-E11"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The repurchase count and month are directly stated."
+    },
+    {
+      "id": "holdout-12",
+      "as_of": "2025-01-10",
+      "ticker": "H12",
+      "claim": "The reported effective tax rate was 21%.",
+      "evidence_ids": [
+        "HOLD-E12"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The claim is directly supported."
+    },
+    {
+      "id": "holdout-13",
+      "as_of": "2025-01-10",
+      "ticker": "H13",
+      "claim": "The company has 14 retail locations in Canada.",
+      "evidence_ids": [
+        "HOLD-E13"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The count and geography match the evidence."
+    },
+    {
+      "id": "holdout-14",
+      "as_of": "2025-01-10",
+      "ticker": "H14",
+      "claim": "The product launch occurred on March 4.",
+      "evidence_ids": [
+        "HOLD-E14"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The event date is directly reported."
+    },
+    {
+      "id": "holdout-15",
+      "as_of": "2025-01-10",
+      "ticker": "H15",
+      "claim": "Research and development expense was $7.5 million.",
+      "evidence_ids": [
+        "HOLD-E15"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The expense amount is directly stated."
+    },
+    {
+      "id": "holdout-16",
+      "as_of": "2025-01-10",
+      "ticker": "H16",
+      "claim": "The company reported 1.8 million monthly active users.",
+      "evidence_ids": [
+        "HOLD-E16"
+      ],
+      "gate_decision": "allow",
+      "reason_flags": [],
+      "rationale": "The metric and value are directly supported."
+    },
+    {
+      "id": "holdout-17",
+      "as_of": "2025-01-10",
+      "ticker": "H17",
+      "claim": "Revenue will double next year because the company added a new supplier.",
+      "evidence_ids": [
+        "HOLD-E17"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The supplier addition is reported, but no forecast or causal impact supports the prediction."
+    },
+    {
+      "id": "holdout-18",
+      "as_of": "2025-01-10",
+      "ticker": "H18",
+      "claim": "The product is guaranteed to capture 30% market share.",
+      "evidence_ids": [
+        "HOLD-E18"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The evidence contains no share target and does not support a guarantee."
+    },
+    {
+      "id": "holdout-19",
+      "as_of": "2025-01-10",
+      "ticker": "H19",
+      "claim": "The company earned $50 million in the quarter.",
+      "evidence_ids": [
+        "HOLD-E19"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence"
+      ],
+      "rationale": "The amount is supported as revenue, but earnings are not established."
+    },
+    {
+      "id": "holdout-20",
+      "as_of": "2025-01-10",
+      "ticker": "H20",
+      "claim": "Customer retention rose to 95%.",
+      "evidence_ids": [
+        "HOLD-E20"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "The asserted 95% conflicts with the reported 88%."
+    },
+    {
+      "id": "holdout-21",
+      "as_of": "2025-01-10",
+      "ticker": "H21",
+      "claim": "The new feature caused churn to fall by 20%.",
+      "evidence_ids": [
+        "HOLD-E21"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "unsupported_inference"
+      ],
+      "rationale": "The decline and timing are reported, but causation is not established."
+    },
+    {
+      "id": "holdout-22",
+      "as_of": "2025-01-10",
+      "ticker": "H22",
+      "claim": "The shares are undervalued at $40.",
+      "evidence_ids": [
+        "HOLD-E22"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Price is supported, but valuation evidence and the undervaluation conclusion are absent."
+    },
+    {
+      "id": "holdout-23",
+      "as_of": "2025-01-10",
+      "ticker": "H23",
+      "claim": "Management expects margins to improve next year.",
+      "evidence_ids": [
+        "HOLD-E23"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction",
+        "missing_evidence"
+      ],
+      "rationale": "The evidence explicitly says no such outlook was issued."
+    },
+    {
+      "id": "holdout-24",
+      "as_of": "2025-01-10",
+      "ticker": "H24",
+      "claim": "The company will beat analyst estimates next quarter.",
+      "evidence_ids": [
+        "HOLD-E24"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Neither estimates nor evidence supporting the forecast were supplied."
+    },
+    {
+      "id": "holdout-25",
+      "as_of": "2025-01-10",
+      "ticker": "H25",
+      "claim": "All customers prefer the premium plan.",
+      "evidence_ids": [
+        "HOLD-E25"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "unsupported_inference"
+      ],
+      "rationale": "A majority of survey respondents selected it, but the sample cannot support an all-customer claim."
+    },
+    {
+      "id": "holdout-26",
+      "as_of": "2025-01-10",
+      "ticker": "H26",
+      "claim": "The company has no debt.",
+      "evidence_ids": [
+        "HOLD-E26"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction",
+        "missing_evidence"
+      ],
+      "rationale": "Reported long-term borrowings contradict no debt; short-term debt remains unspecified."
+    },
+    {
+      "id": "holdout-27",
+      "as_of": "2025-01-10",
+      "ticker": "H27",
+      "claim": "The acquisition will add $10 million of annual profit.",
+      "evidence_ids": [
+        "HOLD-E27"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "No profit estimate or basis for the prediction appears in the evidence."
+    },
+    {
+      "id": "holdout-28",
+      "as_of": "2025-01-10",
+      "ticker": "H28",
+      "claim": "The company reported $9 million in free cash flow.",
+      "evidence_ids": [
+        "HOLD-E28"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support"
+      ],
+      "rationale": "The supplied components support the claim by transparent subtraction."
+    },
+    {
+      "id": "holdout-29",
+      "as_of": "2025-01-10",
+      "ticker": "H29",
+      "claim": "The company reduced expenses by 15%.",
+      "evidence_ids": [
+        "HOLD-E29"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "The direction of change conflicts with the claim."
+    },
+    {
+      "id": "holdout-30",
+      "as_of": "2025-01-10",
+      "ticker": "H30",
+      "claim": "The stock will rise after the executive purchase.",
+      "evidence_ids": [
+        "HOLD-E30"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The purchase is reported, but price movement and causation are unsupported."
+    },
+    {
+      "id": "holdout-31",
+      "as_of": "2025-01-10",
+      "ticker": "H31",
+      "claim": "The company serves 90% of the national market.",
+      "evidence_ids": [
+        "HOLD-E31"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "unsupported_inference"
+      ],
+      "rationale": "The regional figure is real but cannot be generalized nationally."
+    },
+    {
+      "id": "holdout-32",
+      "as_of": "2025-01-10",
+      "ticker": "H32",
+      "claim": "The new contract guarantees $25 million of revenue.",
+      "evidence_ids": [
+        "HOLD-E32"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The agreement is nonbinding and contains no revenue commitment."
+    },
+    {
+      "id": "holdout-33",
+      "as_of": "2025-01-10",
+      "ticker": "H33",
+      "claim": "The company has enough liquidity for the next two years.",
+      "evidence_ids": [
+        "HOLD-E33"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Current values are provided, but other liquidity sources and future requirements are unknown."
+    },
+    {
+      "id": "holdout-34",
+      "as_of": "2025-01-10",
+      "ticker": "H34",
+      "claim": "The drug is proven safe for long-term use.",
+      "evidence_ids": [
+        "HOLD-E34"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Short-term results do not establish long-term safety."
+    },
+    {
+      "id": "holdout-35",
+      "as_of": "2025-01-10",
+      "ticker": "H35",
+      "claim": "The company missed its disclosed shipment target of 10,000 units.",
+      "evidence_ids": [
+        "HOLD-E35"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "Reported shipments exceed rather than miss the target."
+    },
+    {
+      "id": "holdout-36",
+      "as_of": "2025-01-10",
+      "ticker": "H36",
+      "claim": "The CEO's departure confirms accounting problems.",
+      "evidence_ids": [
+        "HOLD-E36"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "Departure is reported, but the alleged accounting cause is absent and speculative."
+    },
+    {
+      "id": "holdout-37",
+      "as_of": "2025-01-10",
+      "ticker": "H37",
+      "claim": "The company has the highest customer satisfaction in the industry.",
+      "evidence_ids": [
+        "HOLD-E37"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support",
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The score is reported, but no industry benchmark supports the superlative."
+    },
+    {
+      "id": "holdout-38",
+      "as_of": "2025-01-10",
+      "ticker": "H38",
+      "claim": "The regulator approved the product for sale.",
+      "evidence_ids": [
+        "HOLD-E38"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "contradiction"
+      ],
+      "rationale": "Acceptance for review is not approval, and no approval was reported."
+    },
+    {
+      "id": "holdout-39",
+      "as_of": "2025-01-10",
+      "ticker": "H39",
+      "claim": "The partnership will increase revenue by 40%.",
+      "evidence_ids": [
+        "HOLD-E39"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "missing_evidence",
+        "unsupported_inference"
+      ],
+      "rationale": "The partnership is factual, but its revenue effect is not established."
+    },
+    {
+      "id": "holdout-40",
+      "as_of": "2025-01-10",
+      "ticker": "H40",
+      "claim": "The reported gross profit was $6 million.",
+      "evidence_ids": [
+        "HOLD-E40"
+      ],
+      "gate_decision": "review",
+      "reason_flags": [
+        "partial_support"
+      ],
+      "rationale": "The amount follows from the supplied values by subtraction."
+    }
+  ]
+}

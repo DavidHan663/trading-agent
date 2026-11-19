@@ -21,7 +21,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Literal
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 # LLMs sometimes write a placeholder string ("None", "N/A", ...) into an optional
 # numeric field instead of omitting it. Coerce those to None so the structured
@@ -209,6 +209,226 @@ def render_trader_proposal(proposal: TraderProposal) -> str:
 # ---------------------------------------------------------------------------
 
 
+class CalculationInput(BaseModel):
+    name: str = Field(
+        pattern=r"^[A-Za-z][A-Za-z0-9_]{0,47}$",
+        description="Variable name used verbatim in the calculation formula.",
+    )
+    value: float = Field(description="Exact numeric input used by the formula.")
+    unit: str | None = Field(
+        default=None,
+        description="Unit of the input. Use the same scale as the cited evidence.",
+    )
+    evidence_ids: list[str] = Field(
+        min_length=1,
+        description="Evidence records containing this input value.",
+    )
+
+
+class EvidenceClaim(BaseModel):
+    claim_id: str | None = Field(
+        default=None,
+        pattern=r"^C[1-9][0-9]{0,2}$",
+        description=(
+            "Unique ID within this decision, such as C1. Required for new atomic "
+            "claims; omitted only when reading a legacy result."
+        ),
+    )
+    claim_type: Literal["fact", "calculation", "judgment"] | None = Field(
+        default=None,
+        description=(
+            "Atomic claim type. fact copies one proposition from evidence; "
+            "calculation derives one result; judgment expresses one model opinion. "
+            "Omitted values are treated as legacy composite claims."
+        ),
+    )
+    text: str = Field(description="One atomic proposition; never mix fact, calculation, and judgment.")
+    kind: Literal["rating_reason", "financial", "price", "event"] = Field(
+        description="Which final-decision claim this is."
+    )
+    evidence_ids: list[str] = Field(
+        description="Evidence IDs printed beside the analyst tool results. Use an empty list only when no supporting record exists."
+    )
+    numeric_value: float | None = Field(
+        default=None, description="For a financial or price claim, the numeric value copied from evidence when directly comparable."
+    )
+    unit: str | None = Field(
+        default=None, description="Unit beside numeric_value in the original evidence, such as 'million USD'."
+    )
+    calculation_inputs: list[CalculationInput] = Field(
+        default_factory=list,
+        description="For a calculation only: named, cited inputs used by formula.",
+    )
+    formula: str | None = Field(
+        default=None,
+        description="For a calculation only: arithmetic using input names and +, -, *, /, and parentheses.",
+    )
+    result_value: float | None = Field(
+        default=None,
+        description="For a calculation only: the claimed result, in result_unit.",
+    )
+    result_unit: str | None = Field(
+        default=None,
+        description="For a calculation only: unit of result_value, such as percent or ratio.",
+    )
+    basis_claim_ids: list[str] = Field(
+        default_factory=list,
+        description="For a judgment only: fact or calculation claim IDs that form its stated basis.",
+    )
+
+    @model_validator(mode="after")
+    def _validate_atomic_shape(self):
+        if self.claim_type is None:
+            return self
+        if self.claim_id is None:
+            raise ValueError("claim_id is required for an atomic claim")
+        if self.claim_type == "fact":
+            if self.calculation_inputs or self.formula is not None or self.result_value is not None or self.basis_claim_ids:
+                raise ValueError("fact claims cannot contain calculation or judgment fields")
+        elif self.claim_type == "calculation":
+            if not self.calculation_inputs or not self.formula or self.result_value is None:
+                raise ValueError("calculation claims require inputs, formula, and result_value")
+            if self.basis_claim_ids:
+                raise ValueError("calculation claims cannot contain judgment fields")
+        elif self.claim_type == "judgment":
+            if not self.basis_claim_ids:
+                raise ValueError("judgment claims require basis_claim_ids")
+            if self.evidence_ids or self.calculation_inputs or self.formula is not None or self.result_value is not None:
+                raise ValueError("judgment claims must reference atomic claim IDs, not evidence or calculations directly")
+        return self
+
+
+class PortfolioFactClaimOutput(BaseModel):
+    """Strict model-output shape for one directly observed fact."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    claim_id: str = Field(pattern=r"^C[1-9][0-9]{0,2}$")
+    text: str = Field(description="One atomic fact copied from supplied evidence.")
+    kind: Literal["rating_reason", "financial", "price", "event"]
+    evidence_ids: list[str] = Field(
+        min_length=1, description="Registered evidence IDs directly supporting this fact."
+    )
+    numeric_value: float | None = Field(
+        default=None, description="Optional literal numeric value copied from evidence."
+    )
+    unit: str | None = Field(default=None, description="Unit accompanying numeric_value.")
+
+    @model_validator(mode="after")
+    def _numeric_fields_are_paired(self):
+        if (self.numeric_value is None) != (self.unit is None):
+            raise ValueError("numeric_value and unit must be provided together")
+        return self
+
+
+class PortfolioCalculationClaimOutput(BaseModel):
+    """Strict model-output shape for one reproducible calculation."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    claim_id: str = Field(pattern=r"^C[1-9][0-9]{0,2}$")
+    text: str = Field(description="One atomic calculated proposition.")
+    kind: Literal["rating_reason", "financial", "price", "event"]
+    calculation_inputs: list[CalculationInput] = Field(min_length=1)
+    formula: str = Field(description="Arithmetic using the declared input names.")
+    result_value: float
+    result_unit: str | None = None
+
+
+class PortfolioJudgmentClaimOutput(BaseModel):
+    """Strict model-output shape for one interpretation or action."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    claim_id: str = Field(pattern=r"^C[1-9][0-9]{0,2}$")
+    text: str = Field(description="One atomic interpretation, risk judgment, or action.")
+    kind: Literal["rating_reason", "financial", "price", "event"]
+    basis_claim_ids: list[str] = Field(
+        min_length=1,
+        description="IDs from fact_claims or calculation_claims only; never judgment IDs.",
+    )
+
+
+class PortfolioDecisionOutput(BaseModel):
+    """Provider-facing Portfolio Manager schema with claim fields separated by type."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    rating: PortfolioRating
+    executive_summary: str
+    investment_thesis: str
+    fact_claims: list[PortfolioFactClaimOutput] = Field(
+        default_factory=list, max_length=3,
+        description="Directly observed facts. Keep only facts material to the final rating.",
+    )
+    calculation_claims: list[PortfolioCalculationClaimOutput] = Field(
+        default_factory=list, max_length=2,
+        description="Reproducible calculations material to the final rating.",
+    )
+    judgment_claims: list[PortfolioJudgmentClaimOutput] = Field(
+        default_factory=list, max_length=3,
+        description=(
+            "Interpretations and actions. Each basis_claim_ids entry must reference an ID "
+            "from fact_claims or calculation_claims in this same output."
+        ),
+    )
+    price_target: float | None = None
+    time_horizon: str | None = None
+
+    @field_validator("price_target", mode="before")
+    @classmethod
+    def _nullish_float_to_none(cls, value):
+        return _coerce_optional_float(value)
+
+    @model_validator(mode="after")
+    def _validate_claim_graph(self):
+        claims = [*self.fact_claims, *self.calculation_claims, *self.judgment_claims]
+        if len(claims) > 8:
+            raise ValueError("PortfolioDecisionOutput allows at most eight key claims")
+        ids = [claim.claim_id for claim in claims]
+        if len(ids) != len(set(ids)):
+            raise ValueError("PortfolioDecisionOutput claim IDs must be unique")
+        valid_basis_ids = {
+            claim.claim_id for claim in [*self.fact_claims, *self.calculation_claims]
+        }
+        for judgment in self.judgment_claims:
+            unknown = set(judgment.basis_claim_ids) - valid_basis_ids
+            if unknown:
+                raise ValueError(
+                    f"Judgment {judgment.claim_id} has non-fact/calculation basis IDs: "
+                    f"{sorted(unknown)}"
+                )
+        return self
+
+
+def to_portfolio_decision(decision: PortfolioDecisionOutput | "PortfolioDecision") -> "PortfolioDecision":
+    """Convert the strict provider schema to the stable public PortfolioDecision."""
+    if isinstance(decision, PortfolioDecision):
+        return decision
+    claims = []
+    claims.extend(EvidenceClaim(
+        claim_id=claim.claim_id, claim_type="fact", text=claim.text, kind=claim.kind,
+        evidence_ids=claim.evidence_ids, numeric_value=claim.numeric_value, unit=claim.unit,
+    ) for claim in decision.fact_claims)
+    claims.extend(EvidenceClaim(
+        claim_id=claim.claim_id, claim_type="calculation", text=claim.text, kind=claim.kind,
+        evidence_ids=[], calculation_inputs=claim.calculation_inputs, formula=claim.formula,
+        result_value=claim.result_value, result_unit=claim.result_unit,
+    ) for claim in decision.calculation_claims)
+    claims.extend(EvidenceClaim(
+        claim_id=claim.claim_id, claim_type="judgment", text=claim.text, kind=claim.kind,
+        evidence_ids=[], basis_claim_ids=claim.basis_claim_ids,
+    ) for claim in decision.judgment_claims)
+    return PortfolioDecision(
+        rating=decision.rating,
+        executive_summary=decision.executive_summary,
+        investment_thesis=decision.investment_thesis,
+        key_claims=claims,
+        price_target=decision.price_target,
+        time_horizon=decision.time_horizon,
+    )
+
+
 class PortfolioDecision(BaseModel):
     """Structured output produced by the Portfolio Manager.
 
@@ -238,6 +458,15 @@ class PortfolioDecision(BaseModel):
             "Detailed reasoning anchored in specific evidence from the analysts' "
             "debate. If prior lessons are referenced in the prompt context, "
             "incorporate them; otherwise rely solely on the current analysis."
+        ),
+    )
+    key_claims: list[EvidenceClaim] = Field(
+        default_factory=list,
+        description=(
+            "Atomic decision claims. Separate directly observed facts, reproducible "
+            "calculations, and model judgments. Facts cite evidence IDs; calculations "
+            "declare cited inputs and a formula; judgments reference fact/calculation "
+            "claim IDs. Do not invent evidence or claim IDs."
         ),
     )
     price_target: float | None = Field(
@@ -270,6 +499,17 @@ def render_pm_decision(decision: PortfolioDecision) -> str:
         "",
         f"**Investment Thesis**: {decision.investment_thesis}",
     ]
+    if decision.key_claims:
+        parts.extend(["", "**Key Claims and Evidence IDs**:"])
+        for claim in decision.key_claims:
+            ids = ", ".join(claim.evidence_ids) or "none"
+            atomic = f"{claim.claim_id or 'legacy'}:{claim.claim_type or 'composite'}"
+            details = f"evidence: {ids}"
+            if claim.claim_type == "calculation":
+                details += f"; formula: {claim.formula}; result: {claim.result_value} {claim.result_unit or ''}".rstrip()
+            elif claim.claim_type == "judgment":
+                details += f"; basis: {', '.join(claim.basis_claim_ids) or 'none'}"
+            parts.append(f"- [{atomic}; {claim.kind}] {claim.text} ({details})")
     if decision.price_target is not None:
         parts.extend(["", f"**Price Target**: {decision.price_target}"])
     if decision.time_horizon:

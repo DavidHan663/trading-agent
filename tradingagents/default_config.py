@@ -79,9 +79,9 @@ DEFAULT_CONFIG = _apply_env_overrides({
     # Pending entries are never pruned. None disables rotation entirely.
     "memory_log_max_entries": None,
     # LLM settings
-    "llm_provider": "openai",
-    "deep_think_llm": "gpt-5.6-terra",
-    "quick_think_llm": "gpt-5.6-luna",
+    "llm_provider": "deepseek",
+    "deep_think_llm": "deepseek-flash",
+    "quick_think_llm": "deepseek-flash",
     # When None, each provider's client falls back to its own default endpoint
     # (api.openai.com for OpenAI, generativelanguage.googleapis.com for Gemini, ...).
     # The CLI overrides this per provider when the user picks one. Keeping a

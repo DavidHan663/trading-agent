@@ -2,6 +2,7 @@
 
 import fcntl
 import hashlib
+import json
 import os
 import secrets
 from contextlib import asynccontextmanager
@@ -167,6 +168,34 @@ def create_app(data_dir=None):
         if not path.is_file():
             raise HTTPException(404, "报告文件不存在，请检查数据卷")
         return FileResponse(path, media_type="text/markdown", filename=f"{job['request']['ticker']}-report.md")
+
+    @app.get("/api/jobs/{job_id}/evidence", dependencies=[Depends(authenticate)])
+    def report_evidence(job_id: str):
+        job = get_job(job_id)
+        if job["status"] != "completed":
+            raise HTTPException(409, "报告尚未生成")
+        path = root / "reports" / job["id"] / "evidence.json"
+        if not path.is_file():
+            return {"available": False, "claims": [], "records": []}
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                raise ValueError("invalid evidence document")
+            semantic = data.get("semantic_validation") or {}
+            records = data.get("records") or []
+            if not isinstance(semantic, dict) or not isinstance(records, list):
+                raise ValueError("invalid evidence fields")
+            claims = semantic.get("claims") or []
+            if not isinstance(claims, list) or any(not isinstance(c, dict) for c in claims):
+                raise ValueError("invalid claims")
+            if any(not isinstance(record, dict) for record in records):
+                raise ValueError("invalid records")
+        except (OSError, UnicodeError, ValueError):
+            raise HTTPException(500, "证据数据无法读取")
+        claim_fields = ("claim_id", "claim_type", "claim", "decision", "reason_flags", "reasoning", "missing_information", "evidence_quotes", "failure_reason")
+        record_fields = ("id", "tool", "target_ticker", "requested_ticker", "source_ticker", "source_url", "available_at", "period_end", "fetched_at")
+        return {"available": bool(claims), "claims": [{k: c.get(k) for k in claim_fields} for c in claims],
+                "records": [{k: record.get(k) for k in record_fields} for record in records]}
 
     return app
 

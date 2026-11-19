@@ -1,4 +1,6 @@
 import logging
+import json
+from urllib.parse import quote
 
 from .alpha_vantage import (
     get_balance_sheet as get_alpha_vantage_balance_sheet,
@@ -31,6 +33,61 @@ from .y_finance import (
 from .yfinance_news import get_global_news_yfinance, get_news_yfinance
 
 logger = logging.getLogger(__name__)
+
+
+_YFINANCE_PATHS = {
+    "get_stock_data": "history",
+    "get_indicators": "history",
+    "get_fundamentals": "financials",
+    "get_balance_sheet": "balance-sheet",
+    "get_cashflow": "cash-flow",
+    "get_income_statement": "financials",
+}
+
+_ALPHA_VANTAGE_FUNCTIONS = {
+    "get_stock_data": "TIME_SERIES_DAILY_ADJUSTED",
+    "get_indicators": "SMA",
+    "get_fundamentals": "OVERVIEW",
+    "get_balance_sheet": "BALANCE_SHEET",
+    "get_cashflow": "CASH_FLOW",
+    "get_income_statement": "INCOME_STATEMENT",
+}
+
+
+def _provider_reference(method: str, vendor: str, args: tuple, kwargs: dict) -> dict | None:
+    """Return a non-secret, canonical reference for a successful provider response.
+
+    This is deliberately provider provenance, not a claim that the response is
+    a dated filing.  In particular, financial statement responses remain
+    without ``available_at`` unless the provider supplies an actual filing or
+    publication date.
+    """
+    symbol = kwargs.get("ticker") or kwargs.get("symbol") or (args[0] if args else None)
+    if vendor == "yfinance" and symbol and method in _YFINANCE_PATHS:
+        return {
+            "provider": "yfinance",
+            "source_url": f"https://finance.yahoo.com/quote/{quote(str(symbol).upper(), safe='=.-')}/{_YFINANCE_PATHS[method]}",
+            "source_kind": "provider_reference",
+        }
+    if vendor == "alpha_vantage" and method in _ALPHA_VANTAGE_FUNCTIONS:
+        function = _ALPHA_VANTAGE_FUNCTIONS[method]
+        query = f"function={function}"
+        if symbol:
+            query += f"&symbol={quote(str(symbol).upper(), safe='=.-')}"
+        return {
+            "provider": "alpha_vantage",
+            "source_url": f"https://www.alphavantage.co/query?{query}",
+            "source_kind": "provider_reference",
+        }
+    return None
+
+
+def _attach_provider_reference(result, method: str, vendor: str, args: tuple, kwargs: dict):
+    """Add a parseable provenance header while retaining the provider payload."""
+    reference = _provider_reference(method, vendor, args, kwargs)
+    if not reference or not isinstance(result, str):
+        return result
+    return "# Evidence provenance: " + json.dumps(reference, sort_keys=True) + "\n" + result
 
 # Tools organized by category
 TOOLS_CATEGORIES = {
@@ -199,7 +256,8 @@ def route_to_vendor(method: str, *args, **kwargs):
         impl_func = vendor_impl[0] if isinstance(vendor_impl, list) else vendor_impl
 
         try:
-            return impl_func(*args, **kwargs)
+            result = impl_func(*args, **kwargs)
+            return _attach_provider_reference(result, method, vendor, args, kwargs)
         except VendorRateLimitError:
             logger.warning("Vendor %r rate-limited for %s; trying next vendor.", vendor, method)
             continue
